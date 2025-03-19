@@ -1,0 +1,71 @@
+.navbar {
+  position: absolute; /* Para que flote sobre la imagen */
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: transparent; /* Hace que no tenga fondo */
+  padding: 15px 20px;
+  z-index: 1000; /* Se asegura de que esté sobre la imagen */
+  display: flex; /* Asegura que los elementos estén en fila */
+  align-items: center; /* Alinea verticalmente los elementos */
+  justify-content: space-between; /* Distribuye el logo y los enlaces */
+}
+
+.navbar-logo {
+  height: 50px; /* Ajusta según el tamaño del logo */
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex; /* Asegura que los elementos estén en fila */
+  gap: 20px; /* Espacio entre los enlaces */
+  margin: 0;
+  padding: 0;
+  align-items: center; /* Asegura alineación vertical */
+}
+
+.navbar a {
+  color: white; /* Color del texto */
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 10px;
+}
+
+.navbar a:hover {
+  color: #E0A04A; /* Cambia de color al pasar el mouse */
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espacio entre el logo y el texto */
+}
+
+.brandName {
+  font-size: 1.5rem; /* Tamaño de la letra */
+  font-weight: bold; /* Grosor de la letra */
+  color: white; /* Color de la letra */
+  text-transform: uppercase; /* Convierte el texto a mayúsculas */
+  font-family: "Poppins", sans-serif; /* Fuente personalizada */
+  letter-spacing: 2px; /* Espaciado entre letras */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra al texto */
+}
+
+/* 🔹 Ajuste para Redes Sociales */
+.socialIcons {
+  display: flex;
+  gap: 15px;
+  margin-left: 20px; /* Espacio entre el último enlace y las redes */
+}
+
+.socialIcons a {
+  text-decoration: none;
+  color: white; /* Color de los iconos */
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.socialIcons a:hover {
+  color: #E0A04A; /* Color al pasar el mouse */
+}

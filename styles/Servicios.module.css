@@ -1,0 +1,151 @@
+/* 
+  HERO SECTION
+  Ajusta 'servicio1.png' por la imagen que coloques en /public 
+*/
+.heroServicios {
+  position: relative;
+  width: 100%;
+  height: 70vh; /* Ajusta la altura del hero */
+  background: url('/servicio1.png') center center no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Oscurece la imagen */
+  z-index: 1;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+}
+
+.heroContent h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+}
+
+.heroContent p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.heroButton {
+  display: inline-block;
+  background-color: #ff6a3d; /* Botón naranja */
+  color: #fff;
+  padding: 0.8rem 1.5rem;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.heroButton:hover {
+  background-color: #e65b2d;
+}
+
+/* 
+  SECCIÓN DE SERVICIOS
+*/
+.servicesSection {
+  background: #f9f9f9;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.sectionTitle h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.sectionTitle p {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 2.5rem;
+}
+
+.servicesGrid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+}
+
+/* 
+  ESTILOS ORIGINALES DE LAS TARJETAS (antes .cardServicio)
+*/
+.cardServicio {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 2rem 1.5rem;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cardServicio:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.iconContainer {
+  margin-bottom: 1rem;
+}
+
+.iconStyle {
+  font-size: 3rem;
+  color: #ff6a3d; /* Mismo color que el botón para mantener coherencia */
+}
+
+.cardServicio h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.8rem;
+  color: #333;
+}
+
+.cardServicio p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 1.2rem;
+  line-height: 1.5;
+}
+
+.verMasBtn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #0070f3;
+  color: #fff;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.verMasBtn:hover {
+  background-color: #005bb5;
+}
+
+/* 
+  RESPONSIVE
+*/
+@media (max-width: 768px) {
+  .heroServicios {
+    height: 50vh;
+  }
+  .heroContent h1 {
+    font-size: 2rem;
+  }
+}

@@ -1,0 +1,74 @@
+
+  
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 40vh; /* Ajusta la altura */
+    background: url('/portafoliofonts.jpg') center center no-repeat; /* Imagen de fondo del hero */
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  
+  .heroContent {
+    position: relative;
+    color: white;
+    text-align: center;
+  }
+  
+  .breadcrumb {
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  
+  /* SECCIÓN DE PROYECTOS */
+  .projectsSection {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 2rem;
+  }
+  
+  .projectCard {
+    background: white;
+    padding: 1rem;
+    border-radius: 10px;
+    width: 400px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .projectCard h3 {
+    margin-top: 10px;
+  }
+  
+  .projectCard p {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .projectButton {
+    margin-top: 1rem;
+    padding: 0.7rem 1.2rem;
+    background-color: #0070f3;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .projectButton:hover {
+    background-color: #005bb5;
+  }
+  
