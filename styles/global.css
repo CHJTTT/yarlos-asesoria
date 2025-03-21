@@ -1,33 +1,37 @@
-/* Reset básico */
+@import url('https://fonts.googleapis.com/css2?family=Jaini&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playwrite+HU:wght@100..400&family=Tektur:wght@400..900&display=swap');
+
+/* 🔹 Reset Básico */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Asegura que todo el contenido inicie debajo del navbar fijo */
 body {
-  font-family: Arial, sans-serif;
-  
-  background-color: #0D1B2A !important; /* Asegura que toda la página tenga el mismo fondo */
-  color: white; /* Para mejorar la visibilidad del texto */
+  font-family: "Tektur", sans-serif;
+  background-color: #0D1B2A;
+  color: white;
+  line-height: 1.6;
+  scroll-behavior: smooth;
 }
 
+/* 🔹 Estilos Globales para Tipografía */
 h1, h2, h3, p {
   margin: 0;
 }
 
-.hero {
-  text-align: center;
-  background: url('/fondo.jpg') no-repeat center center/cover;
-  color: white;
-  padding: 50px 0;
+/* 🚀 Animaciones Globales */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.button {
-  background-color: #ff9800;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
+.fade-in {
+  animation: fadeInUp 0.8s ease-in-out;
 }

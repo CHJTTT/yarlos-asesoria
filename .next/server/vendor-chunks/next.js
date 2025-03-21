@@ -1204,6 +1204,16 @@ eval("\nObject.defineProperty(exports, \"__esModule\", ({\n    value: true\n}));
 
 /***/ }),
 
+/***/ "(pages-dir-node)/./node_modules/next/font/google/target.css?{\"path\":\"pages\\\\_app.js\",\"import\":\"Raleway\",\"arguments\":[{\"subsets\":[\"latin\"],\"weight\":[\"100\",\"700\"]}],\"variableName\":\"raleway\"}":
+/*!***********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/next/font/google/target.css?{"path":"pages\\_app.js","import":"Raleway","arguments":[{"subsets":["latin"],"weight":["100","700"]}],"variableName":"raleway"} ***!
+  \***********************************************************************************************************************************************************************************/
+/***/ ((module) => {
+
+eval("// Exports\nmodule.exports = {\n\t\"style\": {\"fontFamily\":\"'Raleway', 'Raleway Fallback'\",\"fontStyle\":\"normal\"},\n\t\"className\": \"__className_fea763\"\n};\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHBhZ2VzLWRpci1ub2RlKS8uL25vZGVfbW9kdWxlcy9uZXh0L2ZvbnQvZ29vZ2xlL3RhcmdldC5jc3M/e1wicGF0aFwiOlwicGFnZXNcXFxcX2FwcC5qc1wiLFwiaW1wb3J0XCI6XCJSYWxld2F5XCIsXCJhcmd1bWVudHNcIjpbe1wic3Vic2V0c1wiOltcImxhdGluXCJdLFwid2VpZ2h0XCI6W1wiMTAwXCIsXCI3MDBcIl19XSxcInZhcmlhYmxlTmFtZVwiOlwicmFsZXdheVwifSIsIm1hcHBpbmdzIjoiQUFBQTtBQUNBO0FBQ0EsV0FBVyxrRUFBa0U7QUFDN0U7QUFDQSIsInNvdXJjZXMiOlsiQzpcXFVzZXJzXFwuLUNocmlzdGlhblxcRGVza3RvcFxceWFybG9zLWFzZXNvcmlhXFxub2RlX21vZHVsZXNcXG5leHRcXGZvbnRcXGdvb2dsZVxcdGFyZ2V0LmNzcz97XCJwYXRoXCI6XCJwYWdlc1xcX2FwcC5qc1wiLFwiaW1wb3J0XCI6XCJSYWxld2F5XCIsXCJhcmd1bWVudHNcIjpbe1wic3Vic2V0c1wiOltcImxhdGluXCJdLFwid2VpZ2h0XCI6W1wiMTAwXCIsXCI3MDBcIl19XSxcInZhcmlhYmxlTmFtZVwiOlwicmFsZXdheVwifXxwYWdlcy1kaXItbm9kZSJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyBFeHBvcnRzXG5tb2R1bGUuZXhwb3J0cyA9IHtcblx0XCJzdHlsZVwiOiB7XCJmb250RmFtaWx5XCI6XCInUmFsZXdheScsICdSYWxld2F5IEZhbGxiYWNrJ1wiLFwiZm9udFN0eWxlXCI6XCJub3JtYWxcIn0sXG5cdFwiY2xhc3NOYW1lXCI6IFwiX19jbGFzc05hbWVfZmVhNzYzXCJcbn07XG4iXSwibmFtZXMiOltdLCJpZ25vcmVMaXN0IjpbMF0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///(pages-dir-node)/./node_modules/next/font/google/target.css?{\"path\":\"pages\\\\_app.js\",\"import\":\"Raleway\",\"arguments\":[{\"subsets\":[\"latin\"],\"weight\":[\"100\",\"700\"]}],\"variableName\":\"raleway\"}\n");
+
+/***/ }),
+
 /***/ "(pages-dir-node)/./node_modules/next/image.js":
 /*!************************************!*\
   !*** ./node_modules/next/image.js ***!

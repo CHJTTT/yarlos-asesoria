@@ -10,6 +10,7 @@ import logo from "../public/logo1.0.png";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,20 +21,28 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+
   return (
     <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ""}`}>
       <div className={styles.logoContainer}>
         <Image src={logo} alt="Logo" width={50} height={50} />
-        <span className={styles.brandName}>YARLOS ASESORIA</span>
+        <span className={styles.brandName}>Yarlos Asesoria</span>
       </div>
 
-      <ul className={styles.navLinks}>
+      {/* Icono hamburguesa para móviles */}
+      <div className={styles.hamburger} onClick={toggleMenu}>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <ul className={`${styles.navLinks} ${menuOpen ? styles.active : ""}`}>
         <li><Link href="/">Inicio</Link></li>
         <li><Link href="/servicios">Servicios</Link></li>
         <li><Link href="/portafolio">Portafolio</Link></li>
         <li><Link href="/testimonios">Testimonios</Link></li>
         <li><Link href="/contacto">Contacto</Link></li>
-        
         <li className={styles.socialIcons}>
           <a href="https://www.facebook.com/profile.php?id=100089800446606" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faFacebook} className={styles.icon} />
@@ -42,7 +51,7 @@ const Navbar = () => {
             <FontAwesomeIcon icon={faInstagram} className={styles.icon} />
           </a>
           <a href="mailto:yarlosasesoria@gmail.com" className={styles.emailLink}>
-            <FontAwesomeIcon icon={faEnvelope} className={styles.icon} /> 
+            <FontAwesomeIcon icon={faEnvelope} className={styles.icon} />
           </a>
         </li>
       </ul>

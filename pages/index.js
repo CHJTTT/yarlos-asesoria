@@ -1,6 +1,7 @@
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import { motion } from "framer-motion";
 import styles from "../styles/Home.module.css";
+import Carousel from "../components/carousel";
+import WhatsAppButton from "../components/WhatsAppButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faProjectDiagram,
@@ -8,44 +9,100 @@ import {
   faCalculator,
   faChalkboardTeacher,
 } from "@fortawesome/free-solid-svg-icons";
-import Carousel from "../components/carousel";
-import WhatsAppButton from "../components/WhatsAppButton";
 
 export default function Home() {
   return (
     <div>
-    
-
-      <header className={styles.hero}>
-      <Navbar/>
-        <h1>Asesoría y Desarrollo en Arquitectura e Ingeniería Civil</h1>
-        <p>Brindamos apoyo académico y profesional en proyectos arquitectónicos e ingenieriles</p>
-        <button className={styles.button}>LEER MÁS</button>
-      </header>
+      {/* HERO SECTION */}
+      <motion.header
+        className={styles.hero}
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+      >
+        {/* Capa oscura superpuesta */}
+        <div className={styles.overlay}></div>
+        
+        {/* Contenido del hero */}
+        <div className={styles.heroContent}>
+          <h1>
+            Asesoría y Desarrollo en <br /> Arquitectura e Ingeniería Civil
+          </h1>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.2, delay: 0.3 }}
+          >
+            Brindamos apoyo académico y profesional en proyectos arquitectónicos e ingenieriles.
+          </motion.p>
+          <motion.button
+            className={styles.button}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+          >
+            LEER MÁS
+          </motion.button>
+        </div>
+      </motion.header>
 
       <Carousel />
       <WhatsAppButton />
 
+      {/* SECCIÓN DE SERVICIOS */}
       <section className={styles.services}>
-        <div className={styles.card}>
-          <FontAwesomeIcon icon={faProjectDiagram} className={styles.icon} />
-          <h3>Asesoría en proyectos</h3>
-          <p>Guiamos y desarrollamos proyectos académicos y profesionales en arquitectura e ingeniería.</p>
+        {[
+          {
+            icon: faProjectDiagram,
+            title: "Asesoría en proyectos",
+            text: "Guiamos y desarrollamos proyectos académicos y profesionales en arquitectura e ingeniería.",
+          },
+          {
+            icon: faCubes,
+            title: "Modelado y representación digital",
+            text: "Creación de planos, renders y modelos 3D para proyectos académicos y profesionales.",
+          },
+          {
+            icon: faCalculator,
+            title: "Cálculo estructural",
+            text: "Asesoramiento en diseño estructural y análisis de resistencia de materiales.",
+          },
+          {
+            icon: faChalkboardTeacher,
+            title: "Capacitaciones y tutorías",
+            text: "Clases especializadas en software de arquitectura, ingeniería y construcción.",
+          },
+        ].map((service, index) => (
+          <motion.article
+            key={index}
+            className={styles.card}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: index * 0.2 }}
+          >
+            <FontAwesomeIcon icon={service.icon} className={styles.icon} />
+            <h3>{service.title}</h3>
+            <p>{service.text}</p>
+          </motion.article>
+        ))}
+      </section>
+
+      {/* SECCIÓN "ACERCA DE NOSOTROS" */}
+      <section className={styles.infoSection}>
+        <div className={styles.infoContainer}>
+          <h2>¿Quiénes Somos?</h2>
+          <p>
+            Somos una empresa comprometida con la excelencia en la asesoría y el desarrollo 
+            de proyectos en arquitectura e ingeniería civil. Nuestro equipo de profesionales 
+            trabaja con pasión para ofrecer soluciones integrales y sustentables.
+          </p>
+          <p>
+            Con más de [X] años de experiencia, impulsamos la innovación y calidad en cada 
+            proyecto, garantizando resultados excepcionales.
+          </p>
         </div>
-        <div className={styles.card}>
-          <FontAwesomeIcon icon={faCubes} className={styles.icon} />
-          <h3>Modelado y representación digital</h3>
-          <p>Creación de planos, renders y modelos 3D para proyectos académicos y profesionales.</p>
-        </div>
-        <div className={styles.card}>
-          <FontAwesomeIcon icon={faCalculator} className={styles.icon} />
-          <h3>Cálculo estructural</h3>
-          <p>Asesoramiento en diseño estructural y análisis de resistencia de materiales.</p>
-        </div>
-        <div className={styles.card}>
-          <FontAwesomeIcon icon={faChalkboardTeacher} className={styles.icon} />
-          <h3>Capacitaciones y tutorías</h3>
-          <p>Clases especializadas en software de arquitectura, ingeniería y construcción.</p>
+        <div className={styles.infoImage}>
+          <img src="/contacto2.jpg" alt="Acerca de Nosotros" />
         </div>
       </section>
     </div>

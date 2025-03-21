@@ -31,9 +31,7 @@ export default function Contacto() {
         <title>Contacto - YARLOS ASESORÍA</title>
         <meta name="description" content="Contáctanos para más información sobre nuestros servicios." />
       </Head>
-
       <Navbar />
-
       <div className={styles.contactBackground}>
         <div className={styles.contactContainer}>
           {/* Formulario */}
@@ -41,26 +39,12 @@ export default function Contacto() {
             <h2>Contáctanos</h2>
             <p>Déjanos tu mensaje y nos pondremos en contacto contigo.</p>
             <FormularioContacto />
-          </div>
-
           {/* Preguntas Frecuentes */}
-          <div className={styles.faqContainer}>
-            <h2>Consultas Frecuentes</h2>
-            {preguntas.length > 0 ? (
-              preguntas.map((item, index) => (
-                <div key={index} className={styles.faqItem}>
-                  <h3>{item.pregunta}</h3>
-                  <p>{item.respuesta}</p>
-                </div>
-              ))
-            ) : (
-              <p>No hay preguntas frecuentes para esta categoría.</p>
-            )}
+          
           </div>
         </div>
       </div>
-
-      <Footer />
+      
     </>
   );
 }

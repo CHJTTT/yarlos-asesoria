@@ -2,7 +2,9 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
+  "/": "pages/index.js",
   "/servicios": "pages/servicios.js",
-  "/testimonios": "pages/testimonios.js",
+  "/portafolio": "pages/portafolio.js",
+  "/servicios/ingenieria-civil": "pages/servicios/ingenieria-civil.js",
   "/contacto": "pages/contacto.js"
 }

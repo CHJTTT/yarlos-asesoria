@@ -1,39 +1,37 @@
-import Head from 'next/head';
-import Link from 'next/link';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-import styles from '../styles/servicios.module.css';
+import { motion } from "framer-motion";
+import Head from "next/head";
+import Link from "next/link";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import styles from "../styles/servicios.module.css";
 import WhatsAppButton from "../components/WhatsAppButton";
-
-/* Importa tu componente FlippableCard */
-import FlippableCard from '../components/FlippableCard';
+import FlippableCard from "../components/FlippableCard";
 
 /* Íconos */
-import { 
-  FaBuilding, 
-  FaDraftingCompass, 
-  FaChalkboardTeacher
-} from "react-icons/fa";
+import { FaBuilding, FaDraftingCompass, FaChalkboardTeacher } from "react-icons/fa";
 
 export default function Servicios() {
   const serviciosData = [
     {
-      titulo: 'Asesoría y Consultoría en Ingeniería Civil',
-      descripcion: 'Ofrecemos asesoría integral en proyectos de ingeniería civil: diseño estructural, análisis de viabilidad y cumplimiento normativo.',
+      titulo: "Asesoría y Consultoría en Ingeniería Civil",
+      descripcion:
+        "Ofrecemos asesoría integral en proyectos de ingeniería civil: diseño estructural, análisis de viabilidad y cumplimiento normativo.",
       Icono: FaBuilding,
-      link: '/servicios/ingenieria-civil',
+      link: "/servicios/ingenieria-civil",
     },
     {
-      titulo: 'Diseño y Consultoría en Arquitectura',
-      descripcion: 'Brindamos servicios de diseño arquitectónico, modelado 3D y renders para optimizar tus proyectos y presentaciones.',
+      titulo: "Diseño y Consultoría en Arquitectura",
+      descripcion:
+        "Brindamos servicios de diseño arquitectónico, modelado 3D y renders para optimizar tus proyectos y presentaciones.",
       Icono: FaDraftingCompass,
-      link: '/servicios/arquitectura',
+      link: "/servicios/arquitectura",
     },
     {
-      titulo: 'Asesoría Educativa en Ingeniería y Arquitectura',
-      descripcion: 'Ofrecemos tutorías personalizadas y acompañamiento en trabajos académicos y proyectos universitarios.',
+      titulo: "Asesoría Educativa en Ingeniería y Arquitectura",
+      descripcion:
+        "Ofrecemos tutorías personalizadas y acompañamiento en trabajos académicos y proyectos universitarios.",
       Icono: FaChalkboardTeacher,
-      link: '/servicios/asesoria-educativa',
+      link: "/servicios/asesoria-educativa",
     },
   ];
 
@@ -50,59 +48,78 @@ export default function Servicios() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className={styles.heroServicios}>
+      <motion.section
+        className={styles.heroServicios}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
         <div className={styles.overlay}></div>
-        <div className={styles.heroContent}>
+        <motion.div
+          className={styles.heroContent}
+          initial={{ y: -30, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1, delay: 0.3 }}
+        >
           <h1>SERVICIOS</h1>
           <p>Soluciones integrales adaptadas a tu realidad</p>
-          <a href="#servicios" className={styles.heroButton}>Contáctanos</a>
-        </div>
+          <a href="#servicios" className={styles.heroButton}>
+            Contáctanos
+          </a>
+        </motion.div>
         <WhatsAppButton />
-      </section>
+      </motion.section>
 
-      {/* Sección principal de Servicios */}
-      <section id="servicios" className={styles.servicesSection}>
-        <div className={styles.sectionTitle}>
+      {/* Sección Principal de Servicios */}
+      <motion.section
+        id="servicios"
+        className={styles.servicesSection}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.2 }}
+      >
+        <motion.div
+          className={styles.sectionTitle}
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
           <h2>Nuestros Servicios</h2>
           <p>
             En YARLOS ASESORÍA brindamos acompañamiento y diseño en proyectos
             de ingeniería civil y arquitectura.
           </p>
-        </div>
+        </motion.div>
 
+        {/* Tarjetas de Servicios con Animaciones */}
         <div className={styles.servicesGrid}>
           {serviciosData.map(({ titulo, descripcion, Icono, link }, index) => (
-            <FlippableCard
+            <motion.div
               key={index}
-              /* Cara frontal: se muestra el ícono y el título */
-              frontContent={
-                <div style={{ textAlign: 'center', color: '#000' }}>
-                  <Icono 
-                    size={40} 
-                    style={{ marginBottom: '10px', color: '#ff6a3d' }} 
-                  />
-                  <h3>{titulo}</h3>
-                </div>
-              }
-              /* Cara trasera: descripción y "Ver más detalles" */
-              backContent={
-                <div style={{ textAlign: 'center', color: '#000' }}>
-                  <p>{descripcion}</p>
-                  {/* Aquí se usa Link sin etiqueta <a> anidada */}
-                  <Link
-                    href={link}
-                    style={{ color: '#0070f3', textDecoration: 'underline' }}
-                  >
-                    Ver más detalles
-                  </Link>
-                </div>
-              }
-            />
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+            >
+              <FlippableCard
+                frontContent={
+                  <div style={{ textAlign: "center", color: "#000" }}>
+                    <Icono size={40} style={{ marginBottom: "10px", color: "#ff6a3d" }} />
+                    <h3>{titulo}</h3>
+                  </div>
+                }
+                backContent={
+                  <div style={{ textAlign: "center", color: "#000" }}>
+                    <p>{descripcion}</p>
+                    <Link href={link} className={styles.verMasBtn}>Ver más detalles</Link>
+                  </div>
+                }
+              />
+            </motion.div>
           ))}
         </div>
-      </section>
+      </motion.section>
 
-
+     
     </>
   );
 }

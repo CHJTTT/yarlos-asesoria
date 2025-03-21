@@ -1,13 +1,17 @@
+import '../styles/global.css'; 
+import Head from 'next/head';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import '../styles/global.css';
-import '../styles/navbar.module.css';
-import Head from 'next/head';
+import { Raleway } from 'next/font/google';
+
+const raleway = Raleway({
+  subsets: ['latin'],
+  weight: ['100', '700'],
+});
 
 function MyApp({ Component, pageProps }) {
   return (
     <>
-    
       <Head>
         <title>YARLOS ASESORÍA - Arquitectura e Ingeniería</title>
         <meta name="description" content="Brindamos apoyo académico y profesional en proyectos arquitectónicos e ingenieriles." />
@@ -16,10 +20,13 @@ function MyApp({ Component, pageProps }) {
         <meta charSet="UTF-8" />
         <meta name="author" content="YARLOS ASESORÍA" />
       </Head>
-      
-      <Navbar/>
-      <Component {...pageProps} />
-      <Footer />
+
+      <main className={raleway.className}>
+        {/* Navbar y Footer para TODAS las páginas */}
+        <Navbar />
+        <Component {...pageProps} />
+        <Footer />
+      </main>
     </>
   );
 }
