@@ -1,11 +1,12 @@
-const Testimonios = () => {
-    return (
-      <div>
-        <h1>Testimonios</h1>
-        <p>Lee lo que dicen nuestros clientes.</p>
-      </div>
-    );
-  };
-  
-  export default Testimonios;
-  
+// En pages/index.js (o donde quieras)
+import SeccionTestimonios from '../components/SeccionTestimonios'; // O SeccionTestimoniosTailwind
+
+export default function HomePage() {
+  return (
+    <div>
+      {/* Otro contenido de tu página */}
+      <SeccionTestimonios />
+      {/* Más contenido */}
+    </div>
+  );
+}

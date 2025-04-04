@@ -1,0 +1,143 @@
+/* styles/enfoqueSoluciones.module.css */
+
+.enfoqueSection {
+  /* Espaciado general de la sección */
+  padding: 4rem 1rem; /* 4rem arriba/abajo, 1rem izquierda/derecha */
+  /* Color de fondo suave para diferenciarla */
+  background-color: #f8f9fa; /* Un gris muy claro, puedes cambiarlo */
+  /* Centrar el texto principal de la sección si es necesario (títulos) */
+  text-align: center;
+}
+
+.container {
+  /* Limita el ancho máximo del contenido y lo centra */
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  /* Padding interno por si la ventana es muy estrecha */
+  padding: 0 1rem;
+}
+
+.enfoqueSection h2 {
+  /* Estilo para el título principal de la sección */
+  font-size: clamp(2rem, 5vw, 2.8rem); /* Tamaño adaptable */
+  margin-bottom: 1rem;
+  color: #212529; /* Un negro no tan intenso */
+  font-weight: 600; /* Semi-negrita */
+}
+
+.sectionSubtitle {
+  /* Estilo para el párrafo introductorio */
+  font-size: 1.1rem;
+  color: #6c757d; /* Un gris estándar */
+  line-height: 1.7;
+  max-width: 850px; /* Limita el ancho para mejor legibilidad */
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 3.5rem; /* Espacio antes de las tarjetas */
+}
+
+.solucionesGrid {
+  /* Configuración del grid para las tarjetas */
+  display: grid;
+  /* Por defecto, una columna para móviles */
+  grid-template-columns: 1fr;
+  /* Espacio entre las tarjetas */
+  gap: 2rem;
+  /* Espacio después del grid */
+  margin-bottom: 3rem;
+}
+
+/* Media Query para tablets (ej. >= 768px) */
+@media (min-width: 768px) {
+  .solucionesGrid {
+    /* Dos columnas en pantallas medianas */
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Media Query para desktops (ej. >= 1024px) */
+@media (min-width: 1024px) {
+  .solucionesGrid {
+    /* Cuatro columnas en pantallas grandes */
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.solucionCard {
+  /* Estilo de cada tarjeta individual */
+  background-color: #ffffff; /* Fondo blanco */
+  border-radius: 10px; /* Bordes redondeados */
+  padding: 2rem 1.5rem; /* Espaciado interno */
+  /* Sombra sutil para dar profundidad */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
+  /* Alineación del texto interno (puede ser left o center) */
+  text-align: left;
+  /* Transición suave para efectos hover */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  /* Usar flexbox para controlar el contenido interno verticalmente */
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Asegura que todas las tarjetas en una fila tengan la misma altura si es necesario */
+}
+
+.solucionCard:hover {
+  /* Efecto al pasar el cursor */
+  transform: translateY(-6px); /* Levanta ligeramente la tarjeta */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* Sombra más pronunciada */
+}
+
+.solucionIcon {
+  /* Estilo de los iconos */
+  font-size: 3.5rem; /* Tamaño del icono */
+  /* Color principal (ajústalo a tu paleta - este es un azul ejemplo) */
+  color: #0d6efd;
+  margin-bottom: 1.25rem; /* Espacio debajo del icono */
+  /* Centrar el icono dentro de la tarjeta */
+  align-self: center;
+}
+
+.solucionCard h3 {
+  /* Estilo del título de cada tarjeta */
+  font-size: 1.4rem;
+  margin-bottom: 0.8rem;
+  color: #343a40; /* Un gris oscuro */
+  font-weight: 600;
+  text-align: center; /* Centrar el título de la tarjeta */
+}
+
+.solucionCard p {
+  /* Estilo del texto descriptivo principal de la tarjeta */
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: #495057; /* Un gris más suave */
+  /* Permite que este párrafo ocupe el espacio vertical restante */
+  flex-grow: 1;
+  margin-bottom: 1rem; /* Asegura espacio antes del 'enfoqueDetalle' */
+}
+
+.enfoqueDetalle {
+  /* Estilo para el párrafo "Nuestro Enfoque" */
+  margin-top: auto; /* Empuja este bloque hacia abajo si hay espacio extra */
+  padding-top: 1rem; /* Espacio sobre el borde */
+  border-top: 1px solid #e9ecef; /* Borde separador sutil */
+  font-size: 0.9rem !important; /* Un poco más pequeño */
+  color: #5a6268 !important; /* Gris ligeramente diferente */
+  line-height: 1.5;
+}
+
+.enfoqueDetalle strong {
+  /* Destaca el texto "Nuestro Enfoque:" */
+  color: #343a40; /* Mismo color que el h3 */
+  font-weight: 600;
+  display: block; /* Hace que "Nuestro Enfoque:" ocupe su propia línea */
+  margin-bottom: 0.3rem; /* Pequeño espacio después */
+}
+
+.conclusion {
+  /* Estilo para el párrafo final de la sección */
+  margin-top: 3rem; /* Espacio sobre este párrafo */
+  font-size: 1.1rem;
+  color: #6c757d;
+  font-style: italic; /* Cursiva para darle un toque diferente */
+}

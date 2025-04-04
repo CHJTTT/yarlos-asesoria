@@ -1,124 +1,105 @@
+// pages/servicios.js
 import { motion } from "framer-motion";
 import Head from "next/head";
 import Link from "next/link";
+// --- Importa componentes comunes ---
+// (Asumiendo que están en /components en la raíz)
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import styles from "../styles/servicios.module.css";
 import WhatsAppButton from "../components/WhatsAppButton";
-import FlippableCard from "../components/FlippableCard";
+// --- Importa los datos desde la fuente única ---
+// Sube un nivel desde /pages y entra a /pages/servicios/
+import { serviciosPorCategoria } from './servicios/serviciosData';
+// --- Importa los estilos ---
+// (Asumiendo que están en /styles en la raíz)
+import styles from "../styles/servicios.module.css";
 
-/* Íconos */
-import { FaBuilding, FaDraftingCompass, FaChalkboardTeacher } from "react-icons/fa";
+// --- Variantes de Animación ---
+const sentence = { hidden: { opacity: 1 }, visible: { opacity: 1, transition: { delay: 0.3, staggerChildren: 0.06 } } };
+const letter = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } };
+const containerStagger = { visible: { transition: { staggerChildren: 0.1 } }, hidden: {} };
+const itemVariant = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5 } } };
 
-export default function Servicios() {
-  const serviciosData = [
-    {
-      titulo: "Asesoría y Consultoría en Ingeniería Civil",
-      descripcion:
-        "Ofrecemos asesoría integral en proyectos de ingeniería civil: diseño estructural, análisis de viabilidad y cumplimiento normativo.",
-      Icono: FaBuilding,
-      link: "/servicios/ingenieria-civil",
-    },
-    {
-      titulo: "Diseño y Consultoría en Arquitectura",
-      descripcion:
-        "Brindamos servicios de diseño arquitectónico, modelado 3D y renders para optimizar tus proyectos y presentaciones.",
-      Icono: FaDraftingCompass,
-      link: "/servicios/arquitectura",
-    },
-    {
-      titulo: "Asesoría Educativa en Ingeniería y Arquitectura",
-      descripcion:
-        "Ofrecemos tutorías personalizadas y acompañamiento en trabajos académicos y proyectos universitarios.",
-      Icono: FaChalkboardTeacher,
-      link: "/servicios/asesoria-educativa",
-    },
-  ];
+// --- YA NO SE REDEFINEN LOS DATOS LOCALMENTE ---
+// Se utiliza la variable 'serviciosPorCategoria' importada arriba
 
+export default function ServiciosHub() {
   return (
     <>
       <Head>
-        <title>Servicios - YARLOS ASESORÍA</title>
+        <title>Nuestros Servicios - YARLOS ASESORÍA</title>
         <meta
           name="description"
-          content="Descubre los servicios que ofrece YARLOS ASESORÍA: asesoría, diseño y gestión integral en ingeniería civil y arquitectura."
+          content="Explora la gama completa de servicios de YARLOS ASESORÍA en ingeniería civil, arquitectura y capacitación especializada."
         />
       </Head>
-
       <Navbar />
-
-      {/* Hero Section */}
-      <motion.section
-        className={styles.heroServicios}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
+      {/* HERO SECTION */}
+      <motion.section className={styles.heroServicios}>
         <div className={styles.overlay}></div>
-        <motion.div
-          className={styles.heroContent}
-          initial={{ y: -30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 1, delay: 0.3 }}
-        >
-          <h1>SERVICIOS</h1>
-          <p>Soluciones integrales adaptadas a tu realidad</p>
-          <a href="#servicios" className={styles.heroButton}>
-            Contáctanos
-          </a>
-        </motion.div>
+        <div className={styles.heroContent}>
+           <motion.h1 variants={sentence} initial="hidden" animate="visible">
+             { "SERVICIOS".split("").map((char, index) => (
+               <motion.span key={`char-${index}`} variants={letter}>
+                 {char === " " ? "\u00A0" : char}
+               </motion.span>
+             )) }
+          </motion.h1>
+        </div>
         <WhatsAppButton />
       </motion.section>
-
-      {/* Sección Principal de Servicios */}
-      <motion.section
-        id="servicios"
-        className={styles.servicesSection}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 0.2 }}
-      >
-        <motion.div
-          className={styles.sectionTitle}
-          initial={{ y: -20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 1 }}
-        >
-          <h2>Nuestros Servicios</h2>
-          <p>
-            En YARLOS ASESORÍA brindamos acompañamiento y diseño en proyectos
-            de ingeniería civil y arquitectura.
-          </p>
-        </motion.div>
-
-        {/* Tarjetas de Servicios con Animaciones */}
-        <div className={styles.servicesGrid}>
-          {serviciosData.map(({ titulo, descripcion, Icono, link }, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-            >
-              <FlippableCard
-                frontContent={
-                  <div style={{ textAlign: "center", color: "#000" }}>
-                    <Icono size={40} style={{ marginBottom: "10px", color: "#ff6a3d" }} />
-                    <h3>{titulo}</h3>
-                  </div>
-                }
-                backContent={
-                  <div style={{ textAlign: "center", color: "#000" }}>
-                    <p>{descripcion}</p>
-                    <Link href={link} className={styles.verMasBtn}>Ver más detalles</Link>
-                  </div>
-                }
-              />
-            </motion.div>
-          ))}
+      {/* LISTA COMPLETA DE SERVICIOS POR CATEGORÍA */}
+      <section className={styles.servicesListSection}>
+        <div className={styles.introText}>
+           <h2 className={styles.introTitle}>Explora Nuestra Oferta Completa</h2>
+           <p className={styles.introSubtitle}>
+               Ofrecemos un abanico de soluciones diseñadas para cubrir todas las fases de tus proyectos, desde la concepción hasta la ejecución y el soporte académico.
+           </p>
         </div>
-      </motion.section>
-
+        {/* Mapea sobre los datos IMPORTADOS */}
+        {Array.isArray(serviciosPorCategoria) && serviciosPorCategoria.map((categoria) => (
+          <motion.div
+            key={categoria.nombre} // Usar nombre como key (asegúrate que sea único)
+            className={styles.categorySection}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={itemVariant}
+          >
+            <h3 className={styles.categoryTitle}>{categoria.nombre}</h3>
+            <motion.div
+              className={styles.servicesGrid}
+              variants={containerStagger}
+            >
+              {Array.isArray(categoria.servicios) && categoria.servicios.map((servicio) => (
+                <motion.div
+                  key={servicio.id} // El ID del servicio es una key confiable
+                  className={styles.serviceCardWrapper}
+                  variants={itemVariant}
+                  whileHover={{ y: -6, scale: 1.03 }}
+                >
+                  <div className={styles.serviceCard}>
+                    {/* Renderiza el componente Icono definido en serviciosData.js */}
+                    {servicio.Icono && <servicio.Icono className={styles.serviceIcon} />}
+                    <h4 className={styles.serviceTitle}>{servicio.titulo}</h4>
+                    <p className={styles.serviceDescription}>{servicio.descripcion}</p>
+                    {/* El Link usa el ID correcto */}
+                    <Link href={`/servicios/${servicio.id}`} passHref legacyBehavior>
+                      <motion.a
+                        className={styles.serviceLink}
+                        whileHover={{ scale: 1.05, backgroundColor: "var(--color-primario-darker, #1f4d8a)"}}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        Ver Detalles
+                      </motion.a>
+                    </Link>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </motion.div>
+        ))}
+      </section>
      
     </>
   );

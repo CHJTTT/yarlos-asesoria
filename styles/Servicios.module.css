@@ -1,25 +1,22 @@
-/* 
-  HERO SECTION
-  Ajusta 'servicio1.png' por la imagen que coloques en /public 
-*/
+/* styles/servicios.module.css (NUEVO CONTENIDO COMPLETO) */
+
+/* ==================== HERO SECTION (Mantenido o ajustado) ==================== */
 .heroServicios {
   position: relative;
   width: 100%;
-  height: 70vh; /* Ajusta la altura del hero */
-  background: url('/servicio1.png') center center no-repeat;
+  min-height: 55vh;
+  background: url('/servicio1.png') center center no-repeat; /* Confirma ruta imagen */
   background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* Oscurece la imagen */
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.7) 100%);
   z-index: 1;
 }
 
@@ -27,53 +24,78 @@
   position: relative;
   z-index: 2;
   text-align: center;
-  color: #fff;
+  color: var(--color-base);
 }
 
 .heroContent h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  letter-spacing: 2px;
+  font-size: clamp(2.5rem, 7vw, 3.5rem);
+  margin-bottom: 0.5rem;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  font-family: var(--fuente-titulos);
+  color: var(--color-base);
+}
+.heroContent h1 span {
+   display: inline-block;
 }
 
-.heroContent p {
-  font-size: 1.2rem;
-  margin-bottom: 1.5rem;
+/* ==================== SECCIÓN LISTA DE SERVICIOS (NUEVO) ==================== */
+.servicesListSection {
+  padding: 80px 5%;
+  background-color: var(--color-base);
 }
 
-.heroButton {
-  display: inline-block;
-  background-color: #ff6a3d; /* Botón naranja */
-  color: #fff;
-  padding: 0.8rem 1.5rem;
-  border-radius: 5px;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-}
-
-.heroButton:hover {
-  background-color: #e65b2d;
-}
-
-/* 
-  SECCIÓN DE SERVICIOS
-*/
-.servicesSection {
-  background: #f9f9f9;
-  padding: 4rem 2rem;
+.introText {
+  max-width: 800px;
+  margin: 0 auto 60px auto;
   text-align: center;
 }
 
-.sectionTitle h2 {
-  font-size: 2rem;
-  color: #333;
-  margin-bottom: 0.5rem;
+.introTitle {
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  color: var(--color-primario);
+  margin-bottom: 15px;
+  font-weight: 600;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px;
+}
+.introTitle::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: var(--color-acento);
 }
 
-.sectionTitle p {
-  font-size: 1rem;
-  color: #666;
-  margin-bottom: 2.5rem;
+.introSubtitle {
+  font-size: clamp(1rem, 2.8vw, 1.15rem);
+  color: var(--color-texto-secundario);
+  line-height: 1.6;
+}
+
+.categorySection {
+  margin-bottom: 60px;
+}
+.categorySection:last-child {
+  margin-bottom: 0;
+}
+
+.categoryTitle {
+  font-size: clamp(1.6rem, 4vw, 2rem);
+  color: var(--color-primario);
+  text-align: center;
+  margin-bottom: 40px;
+  font-weight: 600;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--color-acento);
+  display: inline-block;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .servicesGrid {
@@ -81,71 +103,90 @@
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  justify-items: center;
+  gap: 30px;
 }
 
-/* 
-  ESTILOS ORIGINALES DE LAS TARJETAS (antes .cardServicio)
-*/
-.cardServicio {
-  background-color: #fff;
+.serviceCardWrapper {
+  /* Contenedor para hover y animación */
+  transition: transform 0.2s ease-out; /* Para el whileHover */
+}
+
+.serviceCard {
+  background-color: var(--fondo-secundario);
   border-radius: 8px;
-  padding: 2rem 1.5rem;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 35px 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-height: 320px;
+  border: 1px solid #eee; /* Borde más visible que transparente */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.serviceCard:hover {
+   border-color: var(--color-acento);
+   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
-.cardServicio:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-}
-
-.iconContainer {
-  margin-bottom: 1rem;
-}
-
-.iconStyle {
+.serviceIcon {
   font-size: 3rem;
-  color: #ff6a3d; /* Mismo color que el botón para mantener coherencia */
+  color: var(--color-acento);
+  margin-bottom: 20px;
 }
 
-.cardServicio h3 {
-  font-size: 1.4rem;
-  margin-bottom: 0.8rem;
-  color: #333;
+.serviceTitle { /* Es h4 ahora */
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--color-primario);
+  margin-bottom: 10px;
+  line-height: 1.3;
 }
 
-.cardServicio p {
-  font-size: 1rem;
-  color: #555;
-  margin-bottom: 1.2rem;
-  line-height: 1.5;
+.serviceDescription {
+  font-size: 0.95rem;
+  color: var(--color-texto-secundario);
+  line-height: 1.6;
+  margin-bottom: 25px;
+  flex-grow: 1;
 }
 
-.verMasBtn {
+.serviceLink { /* Estilo del botón/link "Ver Detalles" */
   display: inline-block;
-  padding: 0.5rem 1rem;
-  background-color: #0070f3;
-  color: #fff;
+  padding: 10px 25px;
+  background-color: var(--color-primario);
+  color: var(--color-base) !important;
+  border: none;
   border-radius: 5px;
   text-decoration: none;
   font-size: 0.9rem;
-  transition: background-color 0.3s ease;
+  font-weight: bold;
+  font-family: var(--fuente-titulos);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+  margin-top: auto;
 }
 
-.verMasBtn:hover {
-  background-color: #005bb5;
-}
-
-/* 
-  RESPONSIVE
-*/
+/* ==================== RESPONSIVE (Ajustes menores) ==================== */
 @media (max-width: 768px) {
   .heroServicios {
-    height: 50vh;
+    min-height: 45vh;
   }
-  .heroContent h1 {
-    font-size: 2rem;
+  .servicesListSection {
+    padding: 60px 5%;
   }
+   .servicesGrid {
+     gap: 25px;
+   }
+    .serviceCard {
+     min-height: auto;
+     padding: 30px 25px;
+   }
+}
+
+@media (max-width: 480px) {
+  .servicesGrid {
+     grid-template-columns: 1fr;
+   }
 }

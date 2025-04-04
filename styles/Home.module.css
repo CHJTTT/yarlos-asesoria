@@ -1,239 +1,496 @@
-/* HERO SECTION */
+/* styles/Home.module.css */
+
+/* ==================== HERO SECTION ==================== */
 .hero {
-  height: 100vh;
-  background: url("/fondo.jpg") center/cover no-repeat;
   display: flex;
-  flex-direction: column;
-  justify-content: center;    
-  align-items: center;
-  text-align: center;
-  color: white;
+  align-items: center; /* Centrar verticalmente */
+  justify-content: flex-start; /* Alinear a la izquierda */
+  min-height: 100vh;
+  background: url("/fondo.jpg") center/cover no-repeat;
   position: relative;
-  padding: 100px 20px 0;
   overflow: hidden;
+  padding: 200px 5% 120px; /* Ajusta padding superior/inferior según necesites */
+  /* animation: zoomEffect 15s infinite ease-in-out; */ /* Opcional */
 }
+
+/* @keyframes zoomEffect { ... } */
 
 .hero::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(3px);
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.65); /* Overlay oscuro */
   z-index: 1;
-  pointer-events: none;
 }
 
-/* Asegurar que el contenido esté encima del overlay */
-.hero h1,
-.hero p,
-.hero .button {
+.heroContent {
   position: relative;
   z-index: 2;
-}
-
-.hero h1 {
-  font-size: 2.5rem;
-  color: #E0A04A;
-  font-weight: 700;
-  font-family: "Quicksand", sans-serif;
-}
-
-.hero p {
-  font-size: 1.3rem;
-  margin: 20px 0;
-  max-width: 600px;
-  line-height: 1.5;
-}
-
-/* Botón con efecto */
-.button {
-  background-color: transparent;
-  color: #E0A04A;
-  border: 2px solid #E0A04A;
-  padding: 12px 24px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 8px;
-  position: relative;
-  overflow: hidden;
-  transition: color 0.3s ease-in-out, border 0.3s ease-in-out;
-}
-
-.button::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #E0A04A;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease-in-out;
-  z-index: -1;
-}
-
-.button:hover::before {
-  transform: scaleX(1);
-}
-
-.button:hover {
-  color: #0D1B2A;
-}
-
-/* SECCIÓN DE SERVICIOS */
-.services {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 25px;
-  padding: 60px 20px;
-  background: #0e1a2b;
-}
-
-.card {
-  width: 280px;
-  text-align: center;
-  padding: 25px;
-  border-radius: 12px;
-  background: #1e2a3a;
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  color: white;
-  position: relative;
-}
-
-.card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.3);
-}
-
-.icon {
-  font-size: 55px;
-  color: #E0A04A;
-  margin-bottom: 12px;
-  transition: transform 0.3s ease-in-out;
-}
-
-.card:hover .icon {
-  transform: scale(1.15);
-}
-
-/* SECCIÓN "ACERCA DE NOSOTROS" */
-.infoSection {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 40px;
-  padding: 60px 20px;
-  background: #0e1a2b;
-}
-
-.infoContainer {
-  max-width: 500px;
+  max-width: 700px;
+  text-align: left;
   color: #fff;
 }
 
-.infoContainer h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: #E0A04A;
+.heroContent h1, .heroTitle { /* Combinado para asegurar aplicación */
+  font-size: clamp(2.5rem, 6vw, 3.8rem);
+  font-weight: 600;
+  margin-bottom: 25px;
+  line-height: 1.3;
+  letter-spacing: -0.5px;
+  color: white;
+  word-break: normal;
+  overflow-wrap: normal;
+  hyphens: none;
+  -webkit-hyphens: none;
+  -ms-hyphens: none;
 }
+
+/* Estilo para resaltar palabras si se usa con Framer Motion */
+.highlight {
+  /* Define aquí cómo quieres que se vea la palabra resaltada */
+  /* Ejemplo: color: var(--color-acento); */
+  /* Asegúrate que no rompa la animación o layout */
+}
+
+
+.heroContent p, .heroSubtitle { /* Combinado para asegurar aplicación */
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  margin-bottom: 40px;
+  line-height: 1.6;
+  max-width: 550px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* ==================== BOTÓN BASE (APLICA A TODOS) ==================== */
+.button {
+  display: inline-block;
+  /* --- AJUSTA ESTOS VALORES PARA QUE COINCIDAN EXACTAMENTE CON TU BOTÓN "SERVICIOS" --- */
+  padding: 14px 35px; /* Padding consistente */
+  background-color: var(--color-acento, #DD6B20); /* Color naranja/coral principal */
+  color: white; /* Texto blanco */
+  border: none;
+  font-size: 1rem;
+  font-weight: bold; /* O el peso que use el botón Servicios */
+  font-family: var(--fuente-titulos, sans-serif); /* Asegúrate que la fuente sea consistente */
+  cursor: pointer;
+  text-transform: uppercase; /* Texto en mayúsculas */
+  border-radius: 6px; /* AJUSTA el redondeo para que coincida */
+  transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  white-space: nowrap; /* Evita que el texto del botón se divida */
+}
+
+/* --- ESTADO HOVER BASE --- */
+.button:hover {
+  /* --- ESTOS DEBEN COINCIDIR CON EL HOVER DEL BOTÓN SERVICIOS (efectos visuales) --- */
+  background-color: var(--color-acento-hover, #e05a3f); /* Color de fondo en hover */
+  color: white;
+  text-decoration: none;
+  /* Los efectos de Framer (scale, shadow) predominarán, pero es bueno tener fallbacks */
+   transform: scale(1.05); /* Pequeño escalado */
+   box-shadow: 0 4px 15px rgba(var(--color-acento-rgb, 221, 107, 32), 0.4); /* Sombra en hover */
+}
+
+/* ==================== INFO SECTION (ACERCA DE NOSOTROS) ==================== */
+.infoSection {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  padding: 100px 5%;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+.infoContainer {
+  flex: 1 1 400px;
+  max-width: 600px;
+  text-align: left;
+  color: var(--color-texto);
+  position: relative;
+  z-index: 1;
+}
+
+.sectionTitleAlt {
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  color: var(--color-primario);
+  margin-bottom: 25px;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 10px;
+}
+.sectionTitleAlt::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0; /* Para alinear a la izquierda */
+  width: 50px;
+  height: 3px;
+  background-color: var(--color-acento);
+}
+
+/* --- Asegura centrado si el título DEBE ir centrado en alguna sección --- */
+.sectionTitleAlt.centered { /* Nueva clase opcional para centrar */
+  text-align: center;
+}
+.sectionTitleAlt.centered::after {
+  left: 50%;
+  transform: translateX(-50%); /* Centra la línea */
+}
+
 
 .infoContainer p {
-  font-size: 1rem;
-  margin-bottom: 20px;
-  line-height: 1.5;
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
+  line-height: 1.7;
+  color: var(--color-texto-secundario);
 }
 
-.infoImage {
+.infoImageContainer {
+  flex: 1 1 400px;
   max-width: 500px;
+  position: relative;
+  z-index: 1;
 }
 
-.infoImage img {
+.infoImageContainer img {
   width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
   border-radius: 10px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-/* ===== Media Queries para Responsividad ===== */
+/* ==================== MISIÓN Y VISIÓN ==================== */
+.misionVisionSection {
+  padding: 100px 5%;
+  background-color: var(--fondo-secundario);
+  text-align: center;
+  overflow: hidden;
+}
 
-/* Para tablets (max-width: 768px) */
+.misionVisionTitleContainer {
+   margin-bottom: 60px;
+}
+
+.misionVisionTitle {
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  color: var(--color-primario);
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px;
+}
+.misionVisionTitle::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: var(--color-acento);
+  margin: 10px auto 0;
+}
+
+.misionVisionGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  align-items: stretch;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.misionItem, .visionItem {
+  background: #fff;
+  padding: 40px 35px;
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.misionItem h3, .visionItem h3 {
+  font-size: 1.6rem;
+  color: var(--color-acento);
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.misionItem p, .visionItem p {
+  font-size: 1rem;
+  color: var(--color-texto-secundario);
+  line-height: 1.6;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.misionLogoContainer { /* Si lo usas */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.misionLogoContainer img { /* Si lo usas */
+  max-width: 150px;
+  height: auto;
+  object-fit: contain;
+}
+
+
+/* ==================== SERVICIOS DESTACADOS (INDEX) ==================== */
+.servicesSection {
+  padding: 100px 5%;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+/* Contenedor General para secciones si necesitas centrar */
+.container {
+  max-width: 1200px; /* O tu ancho estándar */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;  /* Espaciado lateral mínimo */
+  padding-right: 1rem; /* Espaciado lateral mínimo */
+}
+
+
+.servicesContainer { /* Puede ser reemplazado por .container */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.servicesHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+
+.sectionSubtitle { /* Subtítulo debajo de algunos títulos de sección */
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  color: var(--color-texto-secundario);
+  margin-bottom: 50px;
+  text-align: left;
+  max-width: 800px;
+}
+
+.servicesButton {
+  /* Hereda estilos de .button */
+  /* Si necesitara algún margen específico al estar en el header, iría aquí */
+  /* ej: margin-left: auto; */
+}
+
+.cardsWrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.card { /* Estilo para las tarjetas de servicio en index */
+  width: auto;
+  text-align: center;
+  padding: 40px 30px;
+  border-radius: 10px;
+  background: var(--fondo-secundario);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+  color: var(--color-texto);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid transparent;
+  transition: border-color 0.3s ease; /* Transición CSS */
+}
+
+.icon {
+  font-size: 45px;
+  color: var(--color-acento);
+  margin-bottom: 25px;
+}
+
+.card h3 {
+  font-size: 1.4rem;
+  color: var(--color-primario);
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+.card p {
+  font-size: 0.95rem;
+  color: var(--color-texto-secundario);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ==================== PREVIEW NOVEDADES (INDEX) ==================== */
+.novedadesPreviewSection {
+  padding: 100px 5%; /* O ajusta padding como en otras secciones */
+  background-color: var(--fondo-secundario, #f8f9fa); /* Fondo opcional */
+  overflow: hidden;
+}
+
+/* Reutilizar .sectionTitleAlt para el título "Últimas Novedades" */
+/* Si necesita estar centrado, asegúrate de que .sectionTitleAlt tenga text-align: center
+   o usa la clase .centered que añadimos antes: classNale={`${styles.sectionTitleAlt} ${styles.centered}`} */
+.novedadesPreviewSection .sectionTitleAlt {
+    text-align: center; /* Asegura centrado */
+}
+.novedadesPreviewSection .sectionTitleAlt::after {
+    left: 50%;
+    transform: translateX(-50%); /* Centra la línea */
+}
+
+
+/* El .novedadesGrid viene de novedadesPage.module.css importado como gridStyles */
+/* No necesitamos redefinir gridStyles.novedadesGrid aquí */
+
+
+.viewAllButtonContainer {
+  text-align: center; /* Centra el botón */
+  margin-top: 3.5rem; /* Espacio sobre el botón */
+}
+
+.viewAllButton {
+  /* --- ESTE BOTÓN DEBE HEREDAR TODO DE .button --- */
+  /* Solo añade reglas si necesitas algo *diferente* al botón base */
+  /* Por ejemplo, si este tuviera un color de fondo distinto: */
+  /* background-color: var(--color-secundario, blue); */
+}
+
+
+/* ==================== CONTACTO / CTA ==================== */
+.contactSection {
+  padding: 100px 5%;
+  background-color: var(--color-primario);
+  overflow: hidden;
+}
+
+.contactContainer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: #fff;
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+.contactContainer h2 {
+  font-size: clamp(2rem, 5.5vw, 2.8rem);
+  margin-bottom: 20px;
+  color: #fff;
+  font-weight: 600;
+}
+
+.contactContainer p {
+  font-size: clamp(1.1rem, 2.8vw, 1.2rem);
+  margin: 0 auto 40px;
+  max-width: 650px;
+  font-weight: 300;
+  line-height: 1.7;
+  color:white
+}
+
+.contactButton {
+  /* Hereda de .button */
+  padding: 16px 45px; /* Puede tener un padding diferente si es un CTA principal */
+  font-size: 1.1rem;
+}
+
+/* ==================== MEDIA QUERIES (Mobile Adjustments) ==================== */
+
 @media (max-width: 768px) {
+
+  /* --- Ajustes generales para menos padding en móvil --- */
+  .hero, .infoSection, .misionVisionSection, .servicesSection, .novedadesPreviewSection, .contactSection {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  /* --- Hero específico --- */
   .hero {
-    padding: 80px 15px 0;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    text-align: center;
   }
-
-  .hero h1 {
-    font-size: 2rem;
-  }
-
-  .hero p {
-    font-size: 1.1rem;
-    max-width: 90%;
-  }
-
-  .services {
-    padding: 40px 15px;
-  }
-
-  .card {
-    width: 100%;
-    max-width: 320px;
-    padding: 20px;
-  }
-
-  .infoSection {
+  .heroContent {
+    max-width: 100%;
+    display: flex;
     flex-direction: column;
-    padding: 40px 15px;
+    align-items: center;
+  }
+  .heroTitle, .heroSubtitle {
+    text-align: center;
+    width: 100%;
+    max-width: 95%;
+  }
+  .heroTitle {
+     font-size: clamp(2rem, 7vw, 2.8rem);
+     line-height: 1.4;
+     margin-bottom: 20px;
+  }
+  .heroSubtitle {
+      max-width: 90%;
+      font-size: clamp(1rem, 4vw, 1.2rem);
+      line-height: 1.5;
+      margin-bottom: 30px;
   }
 
-  .infoContainer, .infoImage {
+  /* --- Otras Secciones --- */
+  .infoSection {
+    gap: 30px;
+    flex-direction: column;
+    text-align: center;
+  }
+  .infoContainer, .infoImageContainer {
+    flex-basis: 100%;
     max-width: 100%;
   }
-}
-
-/* Para smartphones (max-width: 480px) */
-@media (max-width: 480px) {
-  .hero {
-    padding: 60px 10px 0;
+  .sectionTitleAlt {
+     text-align: center;
   }
-
-  .hero h1 {
-    font-size: 1.8rem;
+  .sectionTitleAlt::after {
+    margin: 10px auto 0;
+    left: 50%; /* Ajuste para centrar línea */
+    transform: translateX(-50%);
   }
-
-  .hero p {
-    font-size: 1rem;
-  }
-
-  .button {
-    padding: 10px 20px;
-    font-size: 1rem;
-  }
-
-  .services {
-    padding: 30px 10px;
-  }
-
-  .card {
-    padding: 15px;
-  }
-
-  .infoSection {
-    padding: 30px 10px;
-  }
-
-  .infoContainer h2 {
-    font-size: 1.8rem;
-  }
-
   .infoContainer p {
-    font-size: 0.9rem;
+    text-align: center;
   }
+
+  .misionVisionSection { padding: 80px 5%; }
+  .misionVisionGrid { grid-template-columns: 1fr; gap: 30px; }
+  .misionItem, .visionItem { text-align: center; }
+  .misionItem h3, .visionItem h3 { text-align: center; }
+
+  .servicesSection { padding: 80px 5%; }
+  .servicesHeader { flex-direction: column; align-items: center; text-align: center; margin-bottom: 30px; }
+  .sectionSubtitle { text-align: center; margin-bottom: 40px; max-width: 90%; }
+  .cardsWrapper { gap: 25px; }
+
+  .novedadesPreviewSection { padding: 80px 5%; }
+   /* El título ya debería centrarse si usa sectionTitleAlt centrado */
+
+  .contactSection { padding: 80px 5%; }
+  .contactContainer h2 { font-size: clamp(1.8rem, 7vw, 2.2rem); }
+  .contactContainer p { font-size: clamp(1rem, 3.5vw, 1.1rem); max-width: 90%; }
 }
+
+@media (max-width: 480px) {
+   .heroTitle { font-size: clamp(1.8rem, 7.5vw, 2.5rem); }
+   .heroSubtitle { font-size: clamp(0.9rem, 4vw, 1.1rem); }
+   .button, .servicesButton, .contactButton, .viewAllButton { /* Aplicar a todos los botones */
+     padding: 12px 25px;
+     font-size: 0.9rem;
+   }
+   .card { padding: 30px 20px; }
+   .sectionTitleAlt { font-size: clamp(1.6rem, 6vw, 2rem); }
+   .misionItem h3, .visionItem h3 { font-size: 1.4rem; }
+   .card h3 { font-size: 1.2rem; }
+}
+
+/* --- Fin --- */

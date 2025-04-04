@@ -1,4 +1,4 @@
-import '../styles/global.css'; 
+import '../styles/global.css';
 import Head from 'next/head';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -22,11 +22,11 @@ function MyApp({ Component, pageProps }) {
       </Head>
 
       <main className={raleway.className}>
-        {/* Navbar y Footer para TODAS las páginas */}
         <Navbar />
         <Component {...pageProps} />
-        <Footer />
+        
       </main>
+      <Footer/>
     </>
   );
 }

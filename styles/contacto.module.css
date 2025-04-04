@@ -1,74 +1,149 @@
+/* Estilos que ya proporcionaste */
 .contactBackground {
-  background: url('/contacto4.jpg') no-repeat right center;
+  background: url('/contacto4.jpg') no-repeat right center; /* Asegúrate que la ruta a la imagen sea correcta desde /public */
   background-size: cover;
   min-height: 100vh;
   display: flex;
-  justify-content: flex-end; 
-  align-items: flex-start;
+  justify-content: flex-end;
+  align-items: flex-start; /* Alinea el form container arriba */
   position: relative;
-  padding: 2rem;
+  padding: 2rem; /* Espacio alrededor */
+  box-sizing: border-box;
 }
 
 .formContainer {
-  background-color: rgba(255, 255, 255, 0.7);
-  max-width: 350px;
+  background-color: rgba(255, 255, 255, 0.8); /* Un poco más opaco para legibilidad? */
+  max-width: 450px; /* Un poco más de ancho quizás? */
   width: 100%;
-  margin-right: 2rem;
-  padding: 1.5rem;
+  margin-right: 2rem; /* Margen a la derecha en desktop */
+  padding: 2rem; /* Más padding interno */
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  margin-top: 5rem;
+  text-align: left; /* Alinea texto de labels a la izquierda */
+  margin-top: 5rem; /* Margen superior para separarlo del borde */
 }
 
 .formContainer h2 {
-  font-size: 1.6rem;
+  font-size: 1.8rem; /* Tamaño ajustado */
   margin-bottom: 0.8rem;
   color: #333;
+  text-align: center; /* Centrar el título principal */
 }
 
 .formContainer p {
   font-size: 1rem;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.5rem; /* Más espacio antes del form */
   color: #555;
+  text-align: center; /* Centrar el párrafo introductorio */
 }
 
+/* Estilo directo para el form dentro del container */
 .formContainer form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1rem; /* Espacio entre los .formGroup */
 }
 
+/* --- NUEVO: Estilo para agrupar label + input --- */
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem; /* Pequeño espacio entre label e input */
+}
+
+.formGroup label {
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+/* --- NUEVO: Indicador de campo requerido --- */
+.requiredIndicator {
+  color: red;
+  margin-left: 3px;
+  font-weight: bold;
+}
+
+/* Estilos para inputs y textarea dentro del container */
 .formContainer input,
 .formContainer textarea {
   width: 100%;
-  padding: 0.75rem;
+  padding: 0.85rem; /* Padding ajustado */
   border-radius: 6px;
   border: 1px solid #ccc;
   font-size: 1rem;
   background: #fff;
+  box-sizing: border-box; /* Asegura que padding no aumente el tamaño total */
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
+.formContainer input:focus,
+.formContainer textarea:focus {
+  outline: none;
+  border-color: #0070f3;
+  box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.2); /* Efecto de foco */
+}
+
+.formContainer textarea {
+  resize: vertical; /* Permitir redimensionar verticalmente */
+  min-height: 120px; /* Altura mínima para el mensaje */
+}
+
+/* Estilo para el botón dentro del container */
 .formContainer button[type='submit'] {
   background-color: #0070f3;
   color: #fff;
-  padding: 0.75rem 1.2rem;
+  padding: 0.9rem 1.5rem; /* Padding ajustado */
   border: none;
   border-radius: 6px;
   cursor: pointer;
   font-size: 1rem;
-  transition: background-color 0.2s ease;
+  font-weight: bold;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+  margin-top: 0.5rem; /* Espacio sobre el botón */
 }
 
-.formContainer button[type='submit']:hover {
+.formContainer button[type='submit']:hover:not(:disabled) {
   background-color: #005bb5;
 }
 
-/* Sección de Consultas Frecuentes */
+.formContainer button[type='submit']:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* --- NUEVO: Estilos para Mensajes de Estado --- */
+.successMessage {
+  background-color: #d1e7dd; /* Verde claro Bootstrap */
+  color: #0f5132;      /* Verde oscuro Bootstrap */
+  border: 1px solid #badbcc;
+  padding: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem; /* Menos espacio abajo si es lo último antes del botón */
+  border-radius: 0.375rem; /* Bootstrap's default */
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.errorMessage {
+  background-color: #f8d7da; /* Rojo claro Bootstrap */
+  color: #842029;      /* Rojo oscuro Bootstrap */
+  border: 1px solid #f5c2c7;
+  padding: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0.375rem;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+
+/* --- Estilos FAQ (Ya los tenías) --- */
 .faqContainer {
   background-color: #f8f9fa;
   padding: 2rem;
-  margin: 2rem auto;
+  margin: 2rem auto; /* Centrado */
   max-width: 800px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -99,20 +174,110 @@
   color: #555;
 }
 
-/* Responsividad */
-@media (max-width: 768px) {
+/* --- Responsividad (Ajustada ligeramente) --- */
+@media (max-width: 992px) { /* Punto de quiebre para mover el form */
   .contactBackground {
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .formContainer {
-    margin-right: 0;
-    margin-top: 2rem;
-    max-width: 90%;
+    justify-content: center; /* Centrar el form horizontalmente */
+    align-items: center; /* Centrar verticalmente si el contenido es corto */
+    padding: 1.5rem;
+    min-height: auto; /* Permitir que la altura se ajuste al contenido */
+    padding-top: 80px; /* Más espacio si tienes Navbar fija */
+    padding-bottom: 4rem;
   }
 
-  .faqContainer {
-    padding: 1.5rem;
+  .formContainer {
+    margin-right: 0; /* Sin margen derecho en pantallas medianas/pequeñas */
+    margin-top: 2rem; /* Ajusta según necesites */
+    max-width: 500px; /* Permitir un poco más de ancho en tabletas */
   }
 }
+
+
+@media (max-width: 576px) { /* Móviles pequeños */
+   .contactBackground {
+     padding: 1rem;
+     padding-top: 70px;
+   }
+  .formContainer {
+    max-width: 100%; /* Ocupa casi todo el ancho disponible */
+    padding: 1.5rem;
+  }
+
+  .formContainer h2 {
+    font-size: 1.5rem;
+  }
+
+  .formContainer p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+
+   .formContainer input,
+   .formContainer textarea,
+   .formContainer button[type='submit'] {
+      font-size: 0.95rem; /* Ligeramente más pequeño en móviles */
+   }
+
+  .faqContainer {
+    padding: 1rem;
+    margin: 1rem;
+  }
+}
+/* === AÑADE ESTOS ESTILOS AL FINAL DE styles/contacto.module.css === */
+
+/* --- Estilo para agrupar label + input/textarea --- */
+.formGroup {
+  display: flex;
+  flex-direction: column; /* Coloca el label encima del input */
+  gap: 0.3rem; /* Pequeño espacio entre label e input */
+  text-align: left; /* Asegura que el label esté alineado a la izquierda */
+}
+
+.formGroup label {
+  font-weight: bold;
+  font-size: 0.9rem; /* Tamaño ligeramente menor para el label */
+  color: #444;      /* Color oscuro pero no negro puro */
+  margin-bottom: 0.1rem; /* Espacio mínimo debajo del label si no usas gap */
+}
+
+/* --- Indicador visual para campos requeridos (*) --- */
+.requiredIndicator {
+  color: #dc3545; /* Un color rojo estándar para errores/requeridos */
+  margin-left: 4px;
+  font-weight: bold;
+}
+
+/* --- Estilo para el Mensaje de Éxito --- */
+.successMessage {
+  background-color: #d1e7dd; /* Verde claro (similar a Bootstrap success) */
+  color: #0f5132;      /* Verde oscuro */
+  border: 1px solid #badbcc;
+  padding: 1rem;      /* Buen padding interno */
+  margin-top: 1rem;   /* Espacio antes del mensaje */
+  margin-bottom: 0.5rem;/* Espacio después, antes del botón */
+  border-radius: 6px; /* Coincide con el border-radius de los inputs */
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+/* --- Estilo para el Mensaje de Error --- */
+.errorMessage {
+  background-color: #f8d7da; /* Rojo claro (similar a Bootstrap danger) */
+  color: #842029;      /* Rojo oscuro */
+  border: 1px solid #f5c2c7;
+  padding: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+/* --- (Opcional pero recomendado) Mejoras Focus para Accesibilidad --- */
+.formContainer input:focus-visible,
+.formContainer textarea:focus-visible {
+  outline: 2px solid #0070f3; /* Un outline claro al usar teclado */
+  outline-offset: 2px;
+  box-shadow: none; /* Puedes quitar el box-shadow si prefieres solo el outline */
+}
+/* ================================================================ */

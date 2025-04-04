@@ -5,7 +5,7 @@ export default function FlippableCard({ frontContent, backContent }) {
   const [isFlipped, setIsFlipped] = useState(false);
 
   const handleFlip = () => {
-    setIsFlipped(!isFlipped);
+    setIsFlipped((prev) => !prev);
   };
 
   return (

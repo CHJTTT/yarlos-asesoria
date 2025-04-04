@@ -27,7 +27,7 @@ const Navbar = () => {
     <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ""}`}>
       <div className={styles.logoContainer}>
         <Image src={logo} alt="Logo" width={50} height={50} />
-        <span className={styles.brandName}>Yarlos Asesoria</span>
+        <span className={styles.brandName}>YARLOS Asesoría</span>
       </div>
 
       {/* Icono hamburguesa para móviles */}
@@ -40,8 +40,8 @@ const Navbar = () => {
       <ul className={`${styles.navLinks} ${menuOpen ? styles.active : ""}`}>
         <li><Link href="/">Inicio</Link></li>
         <li><Link href="/servicios">Servicios</Link></li>
-        <li><Link href="/portafolio">Portafolio</Link></li>
-        <li><Link href="/testimonios">Testimonios</Link></li>
+        <li><Link href="/novedades">Novedades</Link></li>
+       {/*<li><Link href="/testimonios">Testimonios</Link></li>*/}
         <li><Link href="/contacto">Contacto</Link></li>
         <li className={styles.socialIcons}>
           <a href="https://www.facebook.com/profile.php?id=100089800446606" target="_blank" rel="noopener noreferrer">

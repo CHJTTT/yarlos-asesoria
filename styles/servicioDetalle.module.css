@@ -1,0 +1,213 @@
+/* styles/servicioDetalle.module.css */
+
+/* --- Hero Section --- */
+.servicioHero {
+  position: relative; /* Necesario para el overlay absoluto */
+  color: #ffffff; /* Texto blanco para contraste */
+  text-align: center;
+  padding: 6rem 1.5rem; /* Espaciado interno (vertical, horizontal) */
+  min-height: 45vh; /* Altura mínima del hero */
+  display: flex; /* Para centrar contenido verticalmente */
+  flex-direction: column; /* Apila título y descripción */
+  align-items: center; /* Centra horizontalmente */
+  justify-content: center; /* Centra verticalmente */
+  overflow: hidden; /* Evita desbordamientos */
+
+  /* Estilos clave para la imagen de fondo (aplicada inline) */
+  background-size: cover; /* Asegura que la imagen cubra el área */
+  background-position: center center; /* Centra la imagen */
+  background-repeat: no-repeat; /* Evita que se repita */
+  /* background-image se establece dinámicamente en el componente [id].js */
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.55); /* Overlay oscuro semitransparente */
+  z-index: 1; /* Detrás del contenido */
+}
+
+.heroContent {
+  position: relative; /* Para estar sobre el overlay */
+  z-index: 2;
+  max-width: 900px; /* Ancho máximo del texto */
+  margin: 0 auto; /* Centrado horizontal */
+}
+
+.heroContent h1 {
+  font-size: 2.8rem; /* Tamaño de fuente responsivo */
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4); /* Sombra para legibilidad */
+  color:white
+}
+
+.heroContent p {
+  font-size: 1.2rem; /* Tamaño de fuente responsivo */
+  font-weight: 400;
+  line-height: 1.6;
+  max-width: 700px; /* Limita ancho del párrafo */
+  margin-left: auto;
+  margin-right: auto;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Sombra para legibilidad */
+  color :white
+}
+
+/* --- Main Content --- */
+.mainContent {
+  padding: 3rem 1rem; /* Espaciado principal */
+  background-color: #f9f9f9; /* Fondo ligeramente gris para el contenido */
+}
+
+.detalleContainer {
+  max-width: 960px; /* Ancho máximo del contenedor de detalles */
+  margin: 0 auto; /* Centrado */
+  background-color: #ffffff; /* Fondo blanco para la tarjeta de detalles */
+  padding: 2.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.iconoContainer {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.iconoDetalle {
+  font-size: 4rem; /* Tamaño grande para el icono principal */
+  color: var(--color-acento, #F26A4B); /* Usa tu color primario */
+}
+
+.sectionTitle {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color:#0056b3;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  border-bottom: 2px solid var(--color-acento, #F26A4B);
+  padding-bottom: 0.5rem;
+  display: inline-block; /* Para que el borde solo ocupe el ancho del texto */
+  position: relative; /* Para centrar el título con borde */
+  left: 0;
+  transform: translateX(-50%);
+}
+
+.descripcionLarga p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 1.5rem; /* Espacio después de cada párrafo si hay varios */
+  text-align: justify; /* Justificar texto para mejor lectura */
+}
+
+/* --- CTA Section --- */
+.ctaSection {
+  background-color: #eef4ff; /* Fondo azul claro para el CTA */
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 2.5rem;
+}
+
+.ctaTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 0.75rem;
+}
+
+.ctaSection p {
+  font-size: 1.05rem;
+  color: #444;
+  margin-bottom: 1.5rem;
+}
+
+.ctaButton {
+  display: inline-block;
+  background-color: var(--accent-color, #007bff); /* Usa tu color de acento */
+  color: white;
+  padding: 0.8rem 1.8rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 25px; /* Botón redondeado */
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.ctaButton:hover {
+  background-color: var(--accent-color-dark, #0056b3); /* Color más oscuro al pasar el ratón */
+  transform: translateY(-2px); /* Ligero efecto de elevación */
+}
+
+/* --- Volver Link --- */
+.volverLinkContainer {
+  margin-top: 2.5rem;
+  text-align: center;
+}
+
+.volverLink {
+  color: var(--primary-color, #0056b3);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.volverLink:hover {
+  color: var(--accent-color-dark, #003f8a);
+  text-decoration: underline;
+}
+
+/* --- Loading Placeholder Style --- */
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh; /* Altura para centrar el mensaje */
+  font-size: 1.2rem;
+  color: #555;
+}
+
+/* --- Media Queries para Responsividad (Ejemplo) --- */
+@media (max-width: 768px) {
+  .servicioHero {
+    padding: 4rem 1rem;
+    min-height: 35vh;
+  }
+  .heroContent h1 {
+    font-size: 2.2rem;
+  }
+  .heroContent p {
+    font-size: 1rem;
+  }
+  .detalleContainer {
+    padding: 1.5rem;
+  }
+  .sectionTitle {
+    font-size: 1.5rem;
+  }
+  .descripcionLarga p {
+    font-size: 1rem;
+  }
+  .ctaTitle {
+    font-size: 1.3rem;
+  }
+  .ctaSection p {
+    font-size: 0.95rem;
+  }
+  .ctaButton {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroContent h1 {
+    font-size: 1.8rem;
+  }
+   .heroContent p {
+    font-size: 0.9rem;
+  }
+}

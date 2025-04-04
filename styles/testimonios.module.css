@@ -1,0 +1,100 @@
+/* styles/testimonios.module.css */
+
+.testimoniosSection {
+    padding: 60px 20px;
+    background-color: #f9f9f9; /* Un fondo suave */
+    text-align: center;
+  }
+  
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  
+  .sectionTitle {
+    font-size: 2.2rem;
+    margin-bottom: 40px;
+    color: var(--color-secundario, #333); /* Usa tus variables de color si las tienes */
+    font-weight: 600;
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive */
+    gap: 30px;
+    justify-content: center;
+  }
+  
+  .card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Empuja la info del autor hacia abajo */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  }
+  
+  .cardContent {
+    margin-bottom: 20px;
+  }
+  
+  .quote {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+    font-style: italic;
+    position: relative;
+    padding-left: 15px; /* Espacio para comillas */
+  }
+  
+  /* Pseudo-elemento para comillas (opcional) */
+  .quote::before {
+    content: '“';
+    position: absolute;
+    left: -5px;
+    top: -10px; /* Ajusta posición */
+    font-size: 3rem;
+    color: var(--color-primario-light, #e0e0e0); /* Un color suave */
+    line-height: 1;
+    z-index: 0;
+    opacity: 0.6;
+  }
+  
+  
+  .authorInfo {
+    display: flex;
+    align-items: center;
+    margin-top: auto; /* Asegura que se alinee abajo si hay espacio */
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+  }
+  
+  .avatarContainer {
+    margin-right: 15px;
+    flex-shrink: 0; /* Evita que la imagen se encoja */
+  }
+  
+  .avatar {
+    border-radius: 50%; /* Hace la imagen redonda */
+    object-fit: cover; /* Asegura que la imagen cubra el espacio */
+  }
+  
+  .authorName {
+    font-weight: 600;
+    color: var(--color-secundario, #333);
+    margin: 0 0 2px 0;
+  }
+  
+  .authorTitle {
+    font-size: 0.85rem;
+    color: #777;
+    margin: 0;
+  }

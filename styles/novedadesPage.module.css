@@ -1,0 +1,160 @@
+/* styles/novedadesPage.module.css */
+
+/* ====================================
+     ESTILOS PARA EL HERO DE NOVEDADES
+   ==================================== */
+   .novedadesHero {
+    position: relative; /* Necesario para el overlay */
+    color: #ffffff; /* Texto blanco por defecto */
+    text-align: center;
+    padding: 6rem 1.5rem; /* Similar a servicioHero (el padding horizontal aquí es para el *contenido* interno) */
+    min-height: 40vh; /* Un poco menos alto que el de servicios, ajustable */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Evita desbordamientos si la imagen es muy grande */
+    /* width: 100%; No es necesario, <section> es block y ocupará el ancho del padre */
+  
+    /* --- Imagen de Fondo Específica para Novedades --- */
+    background-image: url('/novedades/heronovedades.jpg'); /* Ruta relativa a /public */
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    margin-bottom: 3rem; /* Espacio después del hero */
+  }
+  
+  /* Overlay oscuro similar al de servicioHero */
+  .novedadesHero::before { /* Usamos ::before para el overlay */
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.55); /* Ajusta la opacidad si es necesario */
+    z-index: 1; /* Detrás del contenido de texto */
+  }
+  
+  /* Contenedor para el texto dentro del Hero */
+  .heroContent {
+    position: relative; /* Debe estar sobre el overlay */
+    z-index: 2;
+    max-width: 900px; /* Ancho máximo del texto */
+    margin: 0 auto; /* Centrado horizontal */
+  }
+  
+  /* Título Principal de la Página (dentro del Hero) */
+  .pageTitle {
+    font-size: clamp(2.5rem, 6vw, 3.2rem); /* Similar a servicioHero h1 */
+    font-weight: 700; /* Negrita */
+    margin-bottom: 0.75rem; /* Espacio ajustado */
+    color: #ffffff; /* Asegurar texto blanco */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4); /* Sombra para legibilidad */
+  }
+  
+  /* Quita la línea decorativa si no la quieres en este hero */
+  .pageTitle::after {
+    display: none; /* La oculta */
+  }
+  
+  /* Subtítulo de la Página (dentro del Hero) */
+  .pageSubtitle {
+    font-size: clamp(1.1rem, 3vw, 1.3rem); /* Tamaño similar a servicioHero p */
+    font-weight: 400; /* Normal */
+    line-height: 1.6;
+    max-width: 700px; /* Ancho máximo del subtítulo */
+    margin-left: auto;
+    margin-right: auto;
+    color: #ffffff; /* Asegurar texto blanco */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* =============================================
+       ESTILOS PARA EL RESTO DE LA PÁGINA
+     ============================================= */
+  
+  .mainContent {
+    /* --- CORRECCIÓN: Quitamos padding horizontal --- */
+    padding-top: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 4rem; /* Mantenemos el espacio inferior general */
+    /* Opcional: si quieres que ocupe *todo* el ancho disponible
+       aunque el viewport sea más ancho que el max-width del contenido
+       puedes añadir:
+       width: 100%;
+       box-sizing: border-box; */
+  }
+  
+  .container {
+    max-width: 1200px; /* Ancho máximo del contenido debajo del hero */
+    margin-left: auto;  /* Centrado */
+    margin-right: auto; /* Centrado */
+    /* --- CORRECCIÓN: Añadimos padding horizontal aquí --- */
+    padding-left: 1rem;
+    padding-right: 1rem;
+    /* Padding vertical es 0 porque .novedadesHero y .footer dan el espacio */
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  
+  .novedadesGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    /* Ya no necesita margen superior aquí, el .novedadesHero tiene margin-bottom */
+  }
+  
+  /* Media Queries para Grid */
+  @media (min-width: 768px) {
+    .novedadesGrid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .novedadesGrid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  /* Media Queries para Hero Novedades */
+  @media (max-width: 768px) {
+    .novedadesHero {
+      padding-top: 4.5rem;
+      padding-bottom: 4.5rem;
+      padding-left: 1rem; /* Mantiene padding interno en móvil */
+      padding-right: 1rem;
+      min-height: 35vh; /* Puede ser más corto en móvil */
+      margin-bottom: 2.5rem;
+    }
+    .pageTitle {
+       font-size: clamp(2rem, 7vw, 2.8rem);
+    }
+    .pageSubtitle {
+      font-size: clamp(1rem, 4vw, 1.2rem);
+    }
+    .mainContent {
+        padding-bottom: 3rem; /* Ajuste espacio inferior */
+    }
+    .container {
+        /* Mantenemos el padding lateral en el container */
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .novedadesHero {
+      padding-top: 3.5rem;
+      padding-bottom: 3.5rem;
+      min-height: 30vh;
+    }
+     .pageTitle {
+       font-size: clamp(1.8rem, 7.5vw, 2.5rem);
+    }
+     .pageSubtitle {
+       font-size: clamp(0.95rem, 4vw, 1.1rem);
+     }
+  }

@@ -1,37 +1,158 @@
-@import url('https://fonts.googleapis.com/css2?family=Jaini&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playwrite+HU:wght@100..400&family=Tektur:wght@400..900&display=swap');
+/* ==================== VARIABLES ==================== */
+:root {
+  --color-primario: #245CA6; /* Azul principal */
+  --color-acento: #F26A4B;     /* Naranja para acentos y botones */
+  --color-base: #FFFFFF;       /* Fondo blanco */
+  --color-texto: #333333;       /* Color de texto base */
+  --color-texto-secundario: #5f6c7b; /* Gris azulado para texto secundario */
 
-/* 🔹 Reset Básico */
-* {
+  /* Fondo */
+  --fondo-principal: var(--color-base);
+  --fondo-secundario: #f8f9fa; /* Gris muy claro */
+  /* --fondo-degradado: radial-gradient(circle at center, var(--fondo-principal), var(--fondo-secundario)); */
+
+  /* Fuentes */
+  --fuente-titulos: 'Montserrat', sans-serif; /* Asegúrate de importarla en _app.js o con <link> */
+  --fuente-texto: 'Quicksand', sans-serif;   /* Asegúrate de importarla */
+
+  /* Tamaños de Fuente Base */
+  --tamano-fuente-base: 16px;
+}
+
+/* ==================== REINICIO DE ESTILOS (BÁSICO) ==================== */
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body {
-  font-family: "Tektur", sans-serif;
-  background-color: #0D1B2A;
-  color: white;
-  line-height: 1.6;
+/* ==================== ESTILOS BASE DEL DOCUMENTO ==================== */
+html {
+  font-size: var(--tamano-fuente-base);
   scroll-behavior: smooth;
+  height: 100%;
 }
 
-/* 🔹 Estilos Globales para Tipografía */
-h1, h2, h3, p {
-  margin: 0;
+body {
+  background: var(--fondo-principal); /* Fondo blanco base */
+  color: var(--color-texto);
+  font-family: var(--fuente-texto);
+  line-height: 1.6;
+  overflow-x: hidden; /* Prevenir scroll horizontal */
+  min-height: 100%;
+  -webkit-font-smoothing: antialiased; /* Mejor renderizado de fuentes */
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* 🚀 Animaciones Globales */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+/* ==================== TIPOGRAFÍA ==================== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--fuente-titulos);
+  font-weight: 600; /* Un poco menos pesado que 700 */
+  color: var(--color-primario);
+  line-height: 1.3; /* Ajuste ligero */
+  margin-bottom: 0.75em; /* Un poco más de espacio */
+}
+
+h1 { font-size: 2.5rem; } /* Tamaños base, pueden ser sobreescritos o usar clamp */
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
+
+p {
+  margin-bottom: 1em;
+  color: var(--color-texto-secundario); /* Usar secundario por defecto */
+}
+
+small {
+  font-size: 0.85em;
+  color: var(--color-texto-secundario);
+}
+
+strong, b {
+  font-weight: 700; /* Asegurar negrita con Quicksand */
+}
+
+/* ==================== ENLACES ==================== */
+a {
+  color: var(--color-acento); /* Naranja por defecto para links */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--color-primario); /* Azul al hacer hover */
+  /* text-decoration: underline; Opcional */
+}
+
+/* ==================== BOTONES (Estilos muy básicos si no se usa una clase específica como .button) ==================== */
+button {
+  font-family: var(--fuente-titulos); /* Heredar fuente títulos */
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  /* Evitar transiciones globales aquí, aplicar a clases específicas */
+}
+
+/* ==================== FORMULARIOS ==================== */
+input,
+textarea,
+select {
+  font-family: var(--fuente-texto);
+  border: 1px solid #ced4da; /* Borde gris claro */
+  padding: 12px 15px; /* Más padding */
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 1em;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--color-primario);
+  box-shadow: 0 0 0 3px rgba(36, 92, 166, 0.2); /* Sombra de foco azul */
+  outline: none;
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* ==================== CONTENEDORES (Opcional, si necesitas uno genérico) ==================== */
+.container {
+  width: 100%;
+  max-width: 1200px; /* O tu ancho preferido */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px; /* Padding móvil */
+  padding-right: 15px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-left: 20px;
+    padding-right: 20px;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
-.fade-in {
-  animation: fadeInUp 0.8s ease-in-out;
+/* ==================== LISTAS ==================== */
+ul, ol {
+  margin-bottom: 1em;
+  padding-left: 25px; /* Más indentación */
+}
+
+li {
+  margin-bottom: 0.6em;
+  color: var(--color-texto-secundario);
+}
+
+/* ==================== IMÁGENES ==================== */
+img {
+  max-width: 100%; /* Asegurar que las imágenes no desborden */
+  height: auto; /* Mantener proporción */
+  display: block; /* Evitar espacio extra debajo */
 }

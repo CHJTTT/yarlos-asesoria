@@ -10,8 +10,8 @@ export default function CardServicio({ titulo, descripcion, Icono, link }) {
       <h3>{titulo}</h3>
       <p>{descripcion}</p>
       {link && (
-        <Link href={link} className={styles.verMasBtn}>
-          Ver más
+        <Link href={link}>
+          <a className={styles.verMasBtn}>Ver más</a>
         </Link>
       )}
     </div>
