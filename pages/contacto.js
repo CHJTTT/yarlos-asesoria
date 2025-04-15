@@ -87,7 +87,7 @@ export default function Contacto() {
       </div>
       */}
 
-      <Footer />
+      
     </>
   );
 }

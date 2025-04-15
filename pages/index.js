@@ -47,15 +47,13 @@ export default function Home() {
   // *** ESTE ES EL CAMBIO CLAVE ***
   // Las rutas imageUrl aquí AHORA coinciden con las de novedades.js
   const latestNovedades = [
-    { id: 1, title: 'Inicio de Nuevo Proyecto de Asesoría Estructural', date: '2025-03-01', excerpt: 'Comenzamos la colaboración en un emocionante proyecto residencial...',
-      imageUrl: '/novedades/novedad1.jpg', // Ruta correcta
-      slug: 'inicio-proyecto-asesoria-1' },
+    { id: 1, title: 'Inicio de Nuevo Proyecto de Asesoría Estructural', date: '2025-03-01', excerpt: 'Te acompañamos en la elaboración de tu tesis, desarrollo de planos, cálculos estructurales, instalaciones sanitarias y eléctricas.',
+      imageUrl: '/novedades/novedadfab.jpg', slug: 'inicio-proyecto-asesoria-1' },
     { id: 2, title: 'Taller de Introducción a Revit para Estudiantes', date: '2025-02-25', excerpt: 'Exitosa jornada de capacitación donde exploramos los fundamentos...',
-      imageUrl: '/novedades/novedad2.jpg', // Ruta correcta
-      slug: 'taller-revit-estudiantes' },
-    { id: 3, title: 'Optimización de Diseño Vial Urbano', date: '2025-02-15', excerpt: 'Finalizamos la fase de diseño geométrico para una nueva intersección...',
-      imageUrl: '/novedades/novedad3.jpg', // Ruta correcta
-      slug: 'optimizacion-diseno-vial' },
+      imageUrl: '/novedades/novedad2.jpg', slug: 'taller-revit-estudiantes' },
+    { id: 3, title: 'Lleva tus proyectos al siguiente nivel', date: '2025-02-15', excerpt: 'te ayudamos con asesoría en estructuras, diseño de planos, modelado 3D y renders para que tus entregas sean impecables. .',
+      imageUrl: '/novedades/novedad1.jpg', slug: 'optimizacion-diseno-vial' },
+  
   ];
   // --- FIN DATOS DE EJEMPLO ---
 

@@ -9,7 +9,7 @@ import Footer from "../components/Footer";
 import WhatsAppButton from "../components/WhatsAppButton";
 // --- Importa los datos desde la fuente única ---
 // Sube un nivel desde /pages y entra a /pages/servicios/
-import { serviciosPorCategoria } from './servicios/serviciosData';
+import { serviciosPorCategoria } from '../lib/serviciosData'; // Sube un nivel a 'pages', luego entra a 'lib'
 // --- Importa los estilos ---
 // (Asumiendo que están en /styles en la raíz)
 import styles from "../styles/servicios.module.css";

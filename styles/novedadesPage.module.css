@@ -15,15 +15,15 @@
     justify-content: center;
     overflow: hidden; /* Evita desbordamientos si la imagen es muy grande */
     /* width: 100%; No es necesario, <section> es block y ocupará el ancho del padre */
-  
+
     /* --- Imagen de Fondo Específica para Novedades --- */
-    background-image: url('/novedades/heronovedades.jpg'); /* Ruta relativa a /public */
+    background-image: url('/novedades/heronovedades3.jpg'); /* Ruta relativa a /public */
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
     margin-bottom: 3rem; /* Espacio después del hero */
   }
-  
+
   /* Overlay oscuro similar al de servicioHero */
   .novedadesHero::before { /* Usamos ::before para el overlay */
     content: "";
@@ -35,7 +35,7 @@
     background-color: rgba(0, 0, 0, 0.55); /* Ajusta la opacidad si es necesario */
     z-index: 1; /* Detrás del contenido de texto */
   }
-  
+
   /* Contenedor para el texto dentro del Hero */
   .heroContent {
     position: relative; /* Debe estar sobre el overlay */
@@ -43,7 +43,7 @@
     max-width: 900px; /* Ancho máximo del texto */
     margin: 0 auto; /* Centrado horizontal */
   }
-  
+
   /* Título Principal de la Página (dentro del Hero) */
   .pageTitle {
     font-size: clamp(2.5rem, 6vw, 3.2rem); /* Similar a servicioHero h1 */
@@ -52,12 +52,12 @@
     color: #ffffff; /* Asegurar texto blanco */
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4); /* Sombra para legibilidad */
   }
-  
+
   /* Quita la línea decorativa si no la quieres en este hero */
   .pageTitle::after {
     display: none; /* La oculta */
   }
-  
+
   /* Subtítulo de la Página (dentro del Hero) */
   .pageSubtitle {
     font-size: clamp(1.1rem, 3vw, 1.3rem); /* Tamaño similar a servicioHero p */
@@ -69,11 +69,11 @@
     color: #ffffff; /* Asegurar texto blanco */
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   }
-  
+
   /* =============================================
        ESTILOS PARA EL RESTO DE LA PÁGINA
      ============================================= */
-  
+
   .mainContent {
     /* --- CORRECCIÓN: Quitamos padding horizontal --- */
     padding-top: 0;
@@ -86,7 +86,7 @@
        width: 100%;
        box-sizing: border-box; */
   }
-  
+
   .container {
     max-width: 1200px; /* Ancho máximo del contenido debajo del hero */
     margin-left: auto;  /* Centrado */
@@ -98,27 +98,27 @@
     padding-top: 0;
     padding-bottom: 0;
   }
-  
+
   .novedadesGrid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 2rem;
     /* Ya no necesita margen superior aquí, el .novedadesHero tiene margin-bottom */
   }
-  
+
   /* Media Queries para Grid */
   @media (min-width: 768px) {
     .novedadesGrid {
       grid-template-columns: repeat(2, 1fr);
     }
   }
-  
+
   @media (min-width: 1024px) {
     .novedadesGrid {
       grid-template-columns: repeat(3, 1fr);
     }
   }
-  
+
   /* Media Queries para Hero Novedades */
   @media (max-width: 768px) {
     .novedadesHero {
@@ -144,7 +144,7 @@
         padding-right: 1rem;
     }
   }
-  
+
   @media (max-width: 480px) {
     .novedadesHero {
       padding-top: 3.5rem;

@@ -1,2 +1,7 @@
 node_modules
 .env.local
+# Next.js build output
+.next/
+
+# Next.js static export output
+out/

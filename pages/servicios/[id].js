@@ -11,7 +11,7 @@ import Footer from '../../components/Footer'; // Ajusta la ruta si es necesario
 import WhatsAppButton from '../../components/WhatsAppButton'; // Ajusta la ruta si es necesario
 
 // --- Importa la función para obtener datos ---
-import { getServicioById, serviciosPorCategoria } from './serviciosData';
+import { getServicioById, serviciosPorCategoria } from '../../lib/serviciosData';
 
 // --- Importa los estilos ---
 import styles from '../../styles/servicioDetalle.module.css'; // Ajusta la ruta si es necesario

@@ -1,45 +1,44 @@
 // pages/novedades.js
-import React from 'react';
+import React, { useState } from 'react'; // Importa useState
 import Head from 'next/head';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import NovedadCard from '../components/NovedadCard'; // Importa la tarjeta
-import styles from '../styles/novedadesPage.module.css'; // Estilos para la página
-import { motion } from 'framer-motion'; // Importa motion si quieres animarlo
+import NovedadCard from '../components/NovedadCard';
+import ImageModal from '../components/ImageModal'; // Importa el nuevo modal
+import styles from '../styles/novedadesPage.module.css';
+import { motion } from 'framer-motion';
 
-// --- DATOS DE EJEMPLO (CON imageUrl CORREGIDO) ---
+// --- DATOS DE EJEMPLO ---
 const novedadesData = [
-  { id: 1, title: 'Inicio de Nuevo Proyecto de Asesoría Estructural', date: '2025-03-01', excerpt: 'Comenzamos la colaboración en un emocionante proyecto residencial...',
-    imageUrl: '/novedades/novedad1.jpg', slug: 'inicio-proyecto-asesoria-1' },
+    { id: 1, title: 'Inicio de Nuevo Proyecto de Asesoría Estructural', date: '2025-03-01', excerpt: 'Te acompañamos en la elaboración de tu tesis, desarrollo de planos, cálculos estructurales, instalaciones sanitarias y eléctricas.',
+    imageUrl: '/novedades/novedadfab.jpg', slug: 'inicio-proyecto-asesoria-1' },
   { id: 2, title: 'Taller de Introducción a Revit para Estudiantes', date: '2025-02-25', excerpt: 'Exitosa jornada de capacitación donde exploramos los fundamentos...',
     imageUrl: '/novedades/novedad2.jpg', slug: 'taller-revit-estudiantes' },
-  { id: 3, title: 'Optimización de Diseño Vial Urbano', date: '2025-02-15', excerpt: 'Finalizamos la fase de diseño geométrico para una nueva intersección...',
-    imageUrl: '/novedades/novedad3.jpg', slug: 'optimizacion-diseno-vial' },
- // { id: 4, title: 'Avances en Modelado 3D para Concurso Académico', date: '2025-02-10', excerpt: 'Apoyando a futuros arquitectos en la creación de modelos detallados...',
- // imageUrl: '/images/novedad-4.jpg', slug: 'modelado-3d-concurso' },
- // { id: 5, title: 'Nueva Normativa de Construcción Sostenible', date: '2025-02-05', excerpt: 'Analizamos las implicaciones de la reciente actualización normativa...',
-  //  imageUrl: '/images/novedad-5.jpg', slug: 'normativa-construccion-sostenible' },
-  //{ id: 6, title: 'Asesoría Exitosa en Tesis de Grado', date: '2025-01-30', excerpt: 'Felicitamos a un nuevo ingeniero civil por la sustentación de su tesis...',
-   // imageUrl: '/images/novedad-6.jpg', slug: 'asesoria-tesis-exitosa' },
-  // ... añade más novedades con rutas correctas
+  { id: 3, title: 'Lleva tus proyectos al siguiente nivel', date: '2025-02-15', excerpt: 'te ayudamos con asesoría en estructuras, diseño de planos, modelado 3D y renders para que tus entregas sean impecables. .',
+    imageUrl: '/novedades/novedad1.jpg', slug: 'optimizacion-diseno-vial' },
 ];
 // --- FIN DATOS DE EJEMPLO ---
 
-// Opcional: Variantes de animación para el Hero
-const heroVariant = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.5 } }
-};
-const titleVariant = {
-  hidden: { opacity: 0, y: -20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.2 } }
-};
-const subtitleVariant = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.4 } }
-};
+// --- ANIMACIONES (sin cambios) ---
+const heroVariant = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 0.5 } } };
+const titleVariant = { hidden: { opacity: 0, y: -20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.2 } } };
+const subtitleVariant = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.4 } } };
+// --- FIN ANIMACIONES ---
 
 export default function NovedadesPage() {
+  // --- ESTADO PARA EL MODAL ---
+  const [selectedImageUrl, setSelectedImageUrl] = useState(null);
+
+  // --- FUNCIONES PARA MANEJAR EL MODAL ---
+  const openModal = (imageUrl) => {
+    setSelectedImageUrl(imageUrl);
+  };
+
+  const closeModal = () => {
+    setSelectedImageUrl(null);
+  };
+  // --- FIN MANEJO MODAL ---
+
   return (
     <>
       <Head>
@@ -49,54 +48,47 @@ export default function NovedadesPage() {
 
       <Navbar />
 
-      {/* Main ya NO tiene padding horizontal */}
       <main className={styles.mainContent}>
-
-        {/* --- INICIO HERO SECTION NOVEDADES --- */}
+        {/* --- HERO SECTION (sin cambios) --- */}
         <motion.section
           className={styles.novedadesHero}
           initial="hidden"
           animate="visible"
-          variants={heroVariant} // Anima la aparición del fondo/sección
+          variants={heroVariant}
         >
-          <div className={styles.heroContent}> {/* Contenedor para el texto del hero */}
-            <motion.h1
-              className={styles.pageTitle} // Reutilizamos la clase, pero ajustamos CSS
-              variants={titleVariant}
-            >
-              Novedades
-            </motion.h1>
-            <motion.p
-              className={styles.pageSubtitle} // Reutilizamos la clase, pero ajustamos CSS
-              variants={subtitleVariant}
-            >
+          <div className={styles.heroOverlay}></div>
+          <div className={styles.heroContent}>
+            <motion.h1 className={styles.pageTitle} variants={titleVariant}>Novedades</motion.h1>
+            <motion.p className={styles.pageSubtitle} variants={subtitleVariant}>
               Descubre nuestros últimos proyectos, talleres y noticias relevantes del sector.
             </motion.p>
           </div>
         </motion.section>
-        {/* --- FIN HERO SECTION NOVEDADES --- */}
+        {/* --- FIN HERO SECTION --- */}
 
-        {/* Contenedor principal para el grid (AHORA tiene padding horizontal) */}
+        {/* Contenedor principal para el grid */}
         <div className={styles.container}>
-          {/* El grid de novedades ahora está aquí abajo */}
           <div className={styles.novedadesGrid}>
             {novedadesData.map((novedad) => (
-              // Puedes añadir animación a cada tarjeta si quieres que aparezcan escalonadas
                <motion.div
                  key={novedad.id}
                  initial={{ opacity: 0, y: 20 }}
                  whileInView={{ opacity: 1, y: 0 }}
-                 viewport={{ once: true, amount: 0.2 }} // Amount ajusta cuándo empieza la animación
+                 viewport={{ once: true, amount: 0.2 }}
                  transition={{ duration: 0.5 }}
                >
-                 <NovedadCard novedad={novedad} />
+                 {/* PASAMOS LA FUNCIÓN openModal COMO PROP */}
+                 <NovedadCard novedad={novedad} onImageClick={openModal} />
                </motion.div>
             ))}
           </div>
         </div>
       </main>
 
-     
+
+
+      {/* RENDERIZADO CONDICIONAL DEL MODAL */}
+      <ImageModal imageUrl={selectedImageUrl} onClose={closeModal} />
     </>
   );
 }

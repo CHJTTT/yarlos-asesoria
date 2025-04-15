@@ -1,71 +1,75 @@
 // components/NovedadCard.js
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+// import Link from 'next/link'; // Ya no necesitamos Link aquí
 import styles from '../styles/novedadCard.module.css';
 
-// Función para formatear fechas (opcional, puedes mostrarla como string)
+// Función formatDate (sin cambios)
 const formatDate = (dateString) => {
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
-  // Añadimos una comprobación por si dateString es inválido o nulo
   try {
-    // Asegurarse que la fecha es válida antes de formatear
     if (dateString && !isNaN(new Date(dateString))) {
-       return new Date(dateString).toLocaleDateString('es-ES', options);
+      return new Date(dateString).toLocaleDateString('es-ES', options);
     }
-    return dateString; // Devuelve original si no es fecha válida
+    return dateString;
   } catch (error) {
     console.error("Error formateando fecha:", error);
-    return dateString; // Devuelve el original si hay error
+    return dateString;
   }
 };
 
-const NovedadCard = ({ novedad }) => {
-  // Asumiendo que 'novedad' tiene: id, title, date, excerpt, imageUrl, slug
-  // slug es para el enlace, ej: "mi-primera-novedad"
-
-  // Verificación básica de que 'novedad' no es undefined o null
+// Acepta la nueva prop onImageClick
+const NovedadCard = ({ novedad, onImageClick }) => {
   if (!novedad) {
     console.warn("NovedadCard recibió una novedad indefinida o nula.");
-    return null; // O mostrar un componente placeholder
+    return null;
   }
 
-  // Placeholder si no hay slug (enlazará a la página general por ahora)
-  const linkHref = novedad.slug ? `/novedades/${novedad.slug}` : '/novedades';
+  // Ya no necesitamos linkHref
+  // const linkHref = novedad.slug ? `/novedades/${novedad.slug}` : '/novedades';
+
+  // Función para manejar el clic en la imagen
+  const handleImageContainerClick = (e) => {
+    // Prevenir que el clic se propague si hubiera otros elementos clickables
+    e.stopPropagation();
+    // Llama a la función pasada desde la página principal si existe
+    if (onImageClick && novedad.imageUrl) {
+      onImageClick(novedad.imageUrl);
+    }
+  };
 
   return (
-    // Link con legacyBehavior para permitir la <a> hija directa
-    <Link href={linkHref} passHref legacyBehavior>
-      <a className={styles.cardLink}> {/* Esta <a> ahora es manejada correctamente por Link */}
-        <div className={styles.card}>
-          <div className={styles.imageContainer}>
-            <Image
-              // Usar una imagen placeholder si imageUrl es nulo o vacío
-              src={novedad.imageUrl || '/images/placeholder-novedad.png'}
-              alt={novedad.title || 'Imagen de novedad'}
-              layout="fill"
-              objectFit="cover" // Asegura que la imagen cubra el espacio
-              priority={false} // Cambiar a true para imágenes "Above the fold"
-              // Añadir unoptimized si las imágenes vienen de URLs externas que no puedes configurar en next.config.js
-              // unoptimized={novedad.imageUrl?.startsWith('http')}
-              // Manejo de errores de carga de imagen (opcional pero recomendado)
-              onError={(e) => { e.target.src = '/images/placeholder-novedad.png'; console.error(`Error cargando imagen: ${novedad.imageUrl}`);}}
-            />
-          </div>
-          <div className={styles.content}>
-            {/* Asegurarse que el título exista */}
-            <h3 className={styles.title}>{novedad.title || "Título no disponible"}</h3>
-            {/* Mostrar fecha solo si existe y es válida */}
-            {novedad.date && (
-              <p className={styles.date}>{formatDate(novedad.date)}</p>
-            )}
-            {/* Asegurarse que el extracto exista */}
-            <p className={styles.excerpt}>{novedad.excerpt || "Descripción no disponible."}</p>
-            {/* <span className={styles.readMore}>Leer más →</span> */}
-          </div>
-        </div>
-      </a>
-    </Link>
+    // Eliminamos el Link y la etiqueta <a> envolvente
+    <div className={styles.card}> {/* Ahora el div card es el contenedor principal */}
+      {/* Añadimos onClick a este div */}
+      <div
+        className={styles.imageContainer}
+        onClick={handleImageContainerClick} // Llama a nuestra función al hacer clic
+        style={{ cursor: 'pointer' }} // Cambia el cursor para indicar que es clickeable
+      >
+        <Image
+          src={novedad.imageUrl || '/images/placeholder-novedad.png'}
+          alt={novedad.title || 'Imagen de novedad'}
+          layout="fill"
+          objectFit="contain" // Mantenemos contain para verla completa
+          priority={false}
+          onError={(e) => { e.target.src = '/images/placeholder-novedad.png'; console.error(`Error cargando imagen: ${novedad.imageUrl}`);}}
+        />
+      </div>
+      <div className={styles.content}>
+        <h3 className={styles.title}>{novedad.title || "Título no disponible"}</h3>
+        {novedad.date && (
+          <p className={styles.date}>{formatDate(novedad.date)}</p>
+        )}
+        <p className={styles.excerpt}>{novedad.excerpt || "Descripción no disponible."}</p>
+        {/* Podrías añadir un botón/enlace explícito aquí si quieres ir a la página de detalle */}
+        {/* {novedad.slug && (
+            <Link href={`/novedades/${novedad.slug}`} legacyBehavior>
+              <a className={styles.readMoreLink}>Leer más</a>
+            </Link>
+        )} */}
+      </div>
+    </div>
   );
 };
 
