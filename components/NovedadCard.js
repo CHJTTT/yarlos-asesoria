@@ -25,36 +25,32 @@ const NovedadCard = ({ novedad, onImageClick }) => {
     return null;
   }
 
-  // Ya no necesitamos linkHref
-  // const linkHref = novedad.slug ? `/novedades/${novedad.slug}` : '/novedades';
-
   // Función para manejar el clic en la imagen
   const handleImageContainerClick = (e) => {
-    // Prevenir que el clic se propague si hubiera otros elementos clickables
     e.stopPropagation();
-    // Llama a la función pasada desde la página principal si existe
     if (onImageClick && novedad.imageUrl) {
       onImageClick(novedad.imageUrl);
     }
   };
 
   return (
-    // Eliminamos el Link y la etiqueta <a> envolvente
-    <div className={styles.card}> {/* Ahora el div card es el contenedor principal */}
-      {/* Añadimos onClick a este div */}
+    <div className={styles.card}>
       <div
-        className={styles.imageContainer}
-        onClick={handleImageContainerClick} // Llama a nuestra función al hacer clic
-        style={{ cursor: 'pointer' }} // Cambia el cursor para indicar que es clickeable
+        className={styles.imageContainer} // ASUME que este div tiene position: relative o similar en el CSS
+        onClick={handleImageContainerClick}
+        style={{ cursor: 'pointer' }}
       >
+        {/* --- MODIFICACIÓN AQUÍ --- */}
         <Image
           src={novedad.imageUrl || '/images/placeholder-novedad.png'}
           alt={novedad.title || 'Imagen de novedad'}
-          layout="fill"
-          objectFit="contain" // Mantenemos contain para verla completa
+          fill // Mantenemos 'fill' porque antes usaba layout="fill"
+          style={{ objectFit: 'contain' }} // Usamos 'style' para objectFit
           priority={false}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // Opcional: Ajusta estos tamaños según tu diseño
           onError={(e) => { e.target.src = '/images/placeholder-novedad.png'; console.error(`Error cargando imagen: ${novedad.imageUrl}`);}}
         />
+        {/* --- FIN MODIFICACIÓN --- */}
       </div>
       <div className={styles.content}>
         <h3 className={styles.title}>{novedad.title || "Título no disponible"}</h3>
@@ -62,12 +58,7 @@ const NovedadCard = ({ novedad, onImageClick }) => {
           <p className={styles.date}>{formatDate(novedad.date)}</p>
         )}
         <p className={styles.excerpt}>{novedad.excerpt || "Descripción no disponible."}</p>
-        {/* Podrías añadir un botón/enlace explícito aquí si quieres ir a la página de detalle */}
-        {/* {novedad.slug && (
-            <Link href={`/novedades/${novedad.slug}`} legacyBehavior>
-              <a className={styles.readMoreLink}>Leer más</a>
-            </Link>
-        )} */}
+        {/* ... resto del contenido ... */}
       </div>
     </div>
   );
