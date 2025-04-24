@@ -40,7 +40,7 @@ const Navbar = () => {
   return (
     <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ""}`}>
       <div className={styles.logoContainer}>
-        <Image src={logo} alt="Logo" width={50} height={50} />
+      <Image src={logo} alt="Logo" width={50} height={50} />
         <span className={styles.brandName}>YARLOS Asesoría</span>
       </div>
 
@@ -50,7 +50,7 @@ const Navbar = () => {
         <span></span>
       </div>
 
-      {/* Ya no necesitas onClick en los li individuales para esto */}
+     
       <ul className={`${styles.navLinks} ${menuOpen ? styles.active : ""}`}>
         <li><Link href="/">Inicio</Link></li>
         <li><Link href="/servicios">Servicios</Link></li>

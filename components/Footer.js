@@ -4,7 +4,7 @@ import styles from "../styles/Footer.module.css";
 const Footer = () => {
   return (
     <footer className={styles.footer}>
-      <p>&copy; {new Date().getFullYear()} YARLOS ASESORÍA. Todos los derechos reservados.</p>
+      <p>&copy; {new Date().getFullYear()} YARLOS ASESORÍA. Todos los derechos reservados a Christian chinchay .</p>
     </footer>
   );
 };

@@ -69,21 +69,70 @@ export default function Home() {
 
   return (
     <>
-      {/* ==================== HERO SECTION ==================== */}
-      <header className={styles.hero}>
+       {/* ==================== HERO SECTION (Versión sin lógica móvil) ==================== */}
+       <header className={styles.hero}>
         <div className={styles.heroContent}>
-          <motion.h1 className={styles.heroTitle} variants={sentence} initial="hidden" animate="visible">
-            {isMobile ? heroText : heroText.split("").map((char, index) => {
+
+          {/* --- TÍTULO PRINCIPAL (SIEMPRE ANIMADO LETRA POR LETRA) --- */}
+          <motion.h1
+            className={styles.heroTitle}
+            variants={sentence} // Animación general del contenedor del título
+            initial="hidden"
+            animate="visible"
+          >
+            {/* Ahora SIEMPRE divide el texto en letras y las anima individualmente */}
+            {heroText.split("").map((char, index) => {
+              // La lógica de resaltar se mantiene si es necesaria independientemente del dispositivo
               const shouldHighlight = startIndex !== -1 && index >= startIndex && index < endIndex;
-              return <motion.span key={`char-${index}`} variants={letter} className={shouldHighlight ? styles.highlight : undefined}>{char === " " ? "\u00A0" : char}</motion.span>;
+              return (
+                <motion.span // Cada letra es un span animado
+                  key={`char-${index}`}
+                  variants={letter} // Animación específica para cada letra
+                  className={shouldHighlight ? styles.highlight : undefined} // Aplica resaltado si corresponde
+                >
+                  {/* Muestra la letra (o espacio especial) */}
+                  {char === " " ? "\u00A0" : char}
+                </motion.span>
+              );
             })}
           </motion.h1>
-          <motion.p className={styles.heroSubtitle} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: isMobile ? 0.8 : 2.3 }}>
-            Transformamos ideas en proyectos sólidos y sostenibles.
+
+          {/* --- SUBTÍTULO (ANIMADO CON DELAY FIJO) --- */}
+          <motion.p
+            className={styles.heroSubtitle}
+            initial={{ opacity: 0, y: 20 }} // Estado inicial: invisible y abajo
+            animate={{ opacity: 1, y: 0 }}   // Estado final: visible y en posición
+            transition={{
+              duration: 0.8,
+              delay: 2.3 // Delay FIJO (el valor que antes era para escritorio)
+            }}
+          >
+              Transformamos ideas en proyectos sólidos y sostenibles.
           </motion.p>
-          <motion.button className={styles.button} whileHover={{ scale: 1.05, backgroundColor: "var(--color-acento-hover, #e05a3f)", boxShadow: "0 4px 15px rgba(var(--color-acento-rgb, 221, 107, 32), 0.4)", transition: { duration: 0.2 } }} whileTap={{ scale: 0.95 }} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: isMobile ? 1.0 : 2.5 }} onClick={scrollToAbout}>
+
+          {/* --- BOTÓN (ANIMADO E INTERACTIVO CON DELAY FIJO) --- */}
+          <motion.button
+            className={styles.button}
+            // Animaciones de interacción (hover/tap) se mantienen igual
+            whileHover={{
+              scale: 1.05,
+              backgroundColor: "var(--color-acento-hover, #e05a3f)",
+              boxShadow: "0 4px 15px rgba(var(--color-acento-rgb, 221, 107, 32), 0.4)",
+              transition: { duration: 0.2 }
+            }}
+            whileTap={{ scale: 0.95 }}
+            // Animación de entrada
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.5,
+              delay: 2.5 // Delay FIJO (el valor que antes era para escritorio)
+            }}
+            onClick={scrollToAbout} // La acción al hacer clic se mantiene
+          >
             DESCUBRE MÁS
           </motion.button>
+
         </div>
       </header>
 
