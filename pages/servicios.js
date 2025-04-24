@@ -12,7 +12,7 @@ import WhatsAppButton from "../components/WhatsAppButton";
 import { serviciosPorCategoria } from '../lib/serviciosData'; // Sube un nivel a 'pages', luego entra a 'lib'
 // --- Importa los estilos ---
 // (Asumiendo que están en /styles en la raíz)
-import styles from "../styles/servicios.module.css";
+import styles from "../styles/Servicios.module.css";
 
 // --- Variantes de Animación ---
 const sentence = { hidden: { opacity: 1 }, visible: { opacity: 1, transition: { delay: 0.3, staggerChildren: 0.06 } } };
