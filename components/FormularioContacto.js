@@ -2,12 +2,15 @@ import { useState } from 'react';
 import styles from '../styles/contacto.module.css'; // Tu archivo CSS
 
 export default function FormularioContacto() {
+  // --- MODIFICADO: Estado inicial con claves en inglés ---
   const [formData, setFormData] = useState({
-    nombre: '',
-    correo: '',
-    telefono: '',
-    mensaje: '',
+    name: '',     // Cambiado de 'nombre'
+    email: '',    // Cambiado de 'correo'
+    phone: '',    // Cambiado de 'telefono'
+    message: '',  // Cambiado de 'mensaje'
   });
+  // --- FIN MODIFICACIÓN ---
+
   const [status, setStatus] = useState(''); // '', 'enviando', 'exito', 'error'
   const [mensajeStatus, setMensajeStatus] = useState('');
 
@@ -19,129 +22,123 @@ export default function FormularioContacto() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus('enviando');
-    setMensajeStatus(''); // Limpiar mensaje previo
+    setMensajeStatus('');
 
-    // Validación básica simple (puedes añadir más)
-    if (!formData.nombre || !formData.correo || !formData.mensaje) {
+    // --- MODIFICADO: Validación usando claves en inglés ---
+    if (!formData.name || !formData.email || !formData.message) {
         setStatus('error');
         setMensajeStatus('Por favor, completa todos los campos obligatorios (*).');
-        return; // Detiene el envío si faltan campos requeridos
+        return;
     }
+    // --- FIN MODIFICACIÓN ---
 
     try {
-      // --- LÓGICA DE ENVÍO ---
-      const response = await fetch('/api/contact', { // ¡¡ASEGÚRATE QUE ESTA RUTA API EXISTA Y FUNCIONE!!
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
+        // formData ahora tiene las claves correctas (name, email, etc.)
         body: JSON.stringify(formData),
       });
 
       if (!response.ok) {
-        // Intenta obtener más detalles del error si el backend los envía
         let errorMsg = `Error en el servidor: ${response.statusText}`;
         try {
           const errorData = await response.json();
-          errorMsg = errorData.message || errorMsg; // Usa el mensaje del backend si existe
-        } catch (jsonError) {
-          // Si la respuesta de error no es JSON, usa el statusText
-        }
+          errorMsg = errorData.message || errorMsg;
+        } catch (jsonError) { /* Ignorar error de parseo JSON */ }
         throw new Error(errorMsg);
       }
 
-      // Si todo fue bien
-      // const result = await response.json(); // Descomenta si tu API devuelve datos útiles
       setStatus('exito');
       setMensajeStatus('¡Mensaje enviado con éxito! Gracias por contactarnos.');
-      setFormData({ nombre: '', correo: '', telefono: '', mensaje: '' }); // Limpiar formulario
+      // --- MODIFICADO: Limpiar formulario usando claves en inglés ---
+      setFormData({ name: '', email: '', phone: '', message: '' });
+      // --- FIN MODIFICACIÓN ---
 
     } catch (error) {
       console.error("Error al enviar el formulario:", error);
       setStatus('error');
-      // Muestra el mensaje de error (puede ser el genérico o el del backend si se pudo obtener)
       setMensajeStatus(error.message || 'Hubo un problema al enviar tu mensaje. Por favor, inténtalo de nuevo o contáctanos por otro medio.');
     }
   };
 
   return (
-    // NOTA: El CSS que pasaste aplica estilos a los hijos de .formContainer (form, input, etc.)
-    // por lo que no necesitamos añadir clases específicas a form, input, etc. aquí,
-    // excepto para los mensajes de estado y el indicador de requerido.
     <form onSubmit={handleSubmit}>
-      {/* Campo Nombre */}
-      <div className={styles.formGroup}> {/* Agregado para agrupar label+input */}
-        <label htmlFor="nombre">
+      {/* --- Campo Nombre (name y value modificados) --- */}
+      <div className={styles.formGroup}>
+        <label htmlFor="nombre"> {/* htmlFor e id pueden quedar en español */}
           Nombre <span className={styles.requiredIndicator}>*</span>
         </label>
         <input
           id="nombre"
           type="text"
-          name="nombre"
+          name="name" // <-- MODIFICADO
           placeholder="Ingresa tu nombre"
-          value={formData.nombre}
+          value={formData.name} // <-- MODIFICADO
           onChange={handleChange}
-          required // Mantenemos validación del navegador
+          required
           disabled={status === 'enviando'}
         />
       </div>
 
-      {/* Campo Correo Electrónico */}
-      <div className={styles.formGroup}> {/* Agregado para agrupar label+input */}
+      {/* --- Campo Correo Electrónico (name y value modificados) --- */}
+      <div className={styles.formGroup}>
         <label htmlFor="correo">
           Correo Electrónico <span className={styles.requiredIndicator}>*</span>
         </label>
         <input
           id="correo"
           type="email"
-          name="correo"
+          name="email" // <-- MODIFICADO
           placeholder="Ingresa tu correo"
-          value={formData.correo}
+          value={formData.email} // <-- MODIFICADO
           onChange={handleChange}
           required
           disabled={status === 'enviando'}
         />
       </div>
 
-      {/* Campo Teléfono */}
-      <div className={styles.formGroup}> {/* Agregado para agrupar label+input */}
+      {/* --- Campo Teléfono (name y value modificados) --- */}
+      <div className={styles.formGroup}>
         <label htmlFor="telefono">Teléfono (Opcional)</label>
         <input
           id="telefono"
           type="tel"
-          name="telefono"
+          name="phone" // <-- MODIFICADO
           placeholder="Ingresa tu teléfono"
-          value={formData.telefono}
+          value={formData.phone} // <-- MODIFICADO
           onChange={handleChange}
           disabled={status === 'enviando'}
         />
       </div>
 
-      {/* Campo Mensaje */}
-      <div className={styles.formGroup}> {/* Agregado para agrupar label+input */}
+      {/* --- Campo Mensaje (name y value modificados) --- */}
+      <div className={styles.formGroup}>
         <label htmlFor="mensaje">
           Mensaje <span className={styles.requiredIndicator}>*</span>
         </label>
         <textarea
           id="mensaje"
-          name="mensaje"
+          name="message" // <-- MODIFICADO
           placeholder="Escribe tu consulta o requerimiento"
-          value={formData.mensaje}
+          value={formData.message} // <-- MODIFICADO
           onChange={handleChange}
           required
-          rows={5} // Altura inicial sugerida
+          rows={5}
           disabled={status === 'enviando'}
         ></textarea>
       </div>
 
-      {/* --- MENSAJES DE ESTADO --- */}
+      {/* --- MENSAJES DE ESTADO (sin cambios) --- */}
       {mensajeStatus && (
         <div className={status === 'exito' ? styles.successMessage : styles.errorMessage}>
           {mensajeStatus}
         </div>
       )}
 
-      {/* Botón de Envío */}
+      {/* --- Botón de Envío (sin cambios) --- */}
       <button
         type="submit"
         disabled={status === 'enviando'}
