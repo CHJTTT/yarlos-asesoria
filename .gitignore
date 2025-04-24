@@ -3,5 +3,3 @@ node_modules
 # Next.js build output
 .next/
 
-# Next.js static export output
-out/
