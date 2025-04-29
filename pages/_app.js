@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }) {
       <Head>
         
         {/* Asegúrate de que 'href' apunte al nombre correcto de tu archivo en la carpeta /public */}
-        <link rel="icon" href="../public/logo1.0.png" />
+        <link rel="icon" href="/logo1.0.png" />
         
 
         {/* El resto de tus etiquetas meta */}
