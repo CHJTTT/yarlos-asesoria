@@ -1,5 +1,6 @@
+// pages/_app.js
 import '../styles/global.css';
-import Head from 'next/head';
+import Head from 'next/head'; // Ya lo tienes importado
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Raleway } from 'next/font/google';
@@ -13,6 +14,12 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
+        
+        {/* Asegúrate de que 'href' apunte al nombre correcto de tu archivo en la carpeta /public */}
+        <link rel="icon" href="../public/logo1.0.png" />
+        
+
+        {/* El resto de tus etiquetas meta */}
         <title>YARLOS ASESORÍA - Arquitectura e Ingeniería</title>
         <meta name="description" content="Brindamos apoyo académico y profesional en proyectos arquitectónicos e ingenieriles." />
         <meta name="keywords" content="Arquitectura, Ingeniería Civil, Asesoría, Proyectos, Modelado 3D" />
@@ -24,7 +31,6 @@ function MyApp({ Component, pageProps }) {
       <main className={raleway.className}>
         <Navbar />
         <Component {...pageProps} />
-        
       </main>
       <Footer/>
     </>
